@@ -16,13 +16,16 @@ namespace BurgerOrderBLL.Manager
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+ 
+        private readonly IMapper _mapper;
 
-        public AccountManager(UserManager<AppUser> userManager)
+        public AccountManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
+            _mapper = mapper;
         }
 
-        private readonly IMapper _mapper;
         public Task<bool> Login(UserLoginDto dto)
         {
             throw new NotImplementedException();
