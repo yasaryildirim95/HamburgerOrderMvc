@@ -15,7 +15,6 @@ namespace BurgerOrderBLL.Manager
     public class AccountManager : IAccountService
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
        
         private readonly IMapper _mapper;
         public Task<bool> Login(UserLoginDto dto)
