@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerOrderMVC", "BurgerOrderMVC\BurgerOrderMVC.csproj", "{41EF250F-1BFC-433A-87E2-1ECBF80DCDD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerOrderBLL", "BurgerOrderBLL\BurgerOrderBLL.csproj", "{AA421FBA-999D-414E-BEB1-C9F1469D635A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerOrderDAL", "BurgerOrderDAL\BurgerOrderDAL.csproj", "{A2583131-AE79-47E6-AE0D-A942DC19C3C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerOrderEntity", "BurgerOrderEntity\BurgerOrderEntity.csproj", "{38F1ED0D-0B3D-4D34-8037-179FEA1F0D9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerAppDtos", "BurgerAppDtos\BurgerAppDtos.csproj", "{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerAppViewModels", "BurgerAppViewModels\BurgerAppViewModels.csproj", "{F7736627-69F3-4184-9AEF-65B3C0EF8E62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41EF250F-1BFC-433A-87E2-1ECBF80DCDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41EF250F-1BFC-433A-87E2-1ECBF80DCDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41EF250F-1BFC-433A-87E2-1ECBF80DCDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41EF250F-1BFC-433A-87E2-1ECBF80DCDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA421FBA-999D-414E-BEB1-C9F1469D635A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA421FBA-999D-414E-BEB1-C9F1469D635A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA421FBA-999D-414E-BEB1-C9F1469D635A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA421FBA-999D-414E-BEB1-C9F1469D635A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2583131-AE79-47E6-AE0D-A942DC19C3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2583131-AE79-47E6-AE0D-A942DC19C3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2583131-AE79-47E6-AE0D-A942DC19C3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2583131-AE79-47E6-AE0D-A942DC19C3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F1ED0D-0B3D-4D34-8037-179FEA1F0D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F1ED0D-0B3D-4D34-8037-179FEA1F0D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F1ED0D-0B3D-4D34-8037-179FEA1F0D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F1ED0D-0B3D-4D34-8037-179FEA1F0D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7736627-69F3-4184-9AEF-65B3C0EF8E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7736627-69F3-4184-9AEF-65B3C0EF8E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7736627-69F3-4184-9AEF-65B3C0EF8E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7736627-69F3-4184-9AEF-65B3C0EF8E62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93BFCBF2-D666-4B04-B2C9-4AF0150C947E}
+	EndGlobalSection
+EndGlobal
