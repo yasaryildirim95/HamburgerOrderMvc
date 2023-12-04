@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0; /* Background color for the submenu */
+    border: 1px solid #ccc; /* Optional: Add a border for better separation */
+}
+
+.nav-item:hover .submenu {
+    display: block;
+}
+
+/* Adjust the positioning of the submenu as needed */
+.nav-item {
+    position: relative;
+}

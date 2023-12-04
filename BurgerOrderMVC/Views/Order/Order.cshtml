@@ -1,0 +1,46 @@
+﻿@* @model ViewModel *@
+
+
+<!DOCTYPE html>
+@if(ViewBag.Menus == null)
+{
+    <p>Lütfen menü oluşturun!</p>
+    return;
+}
+@if (ViewBag.Extras == null)
+{
+    <p>Lütfen ekstralar ekleyin!</p>
+    return;
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sipariş Ver</title>
+</head>
+<body>
+    <div class="border border-1 col-4">
+        <label for="pickMenu">Menü</label>
+        <select id="pickMenu">
+            @foreach (var item in ViewBag.Menus)
+            {
+                <option>item1</option>
+            }
+        </select>
+        
+        
+
+    </div>
+
+    <div>
+        @foreach (var item in ViewBag.Extras)
+        {
+            <div>
+                <input type="radio" id="rb_@item.Replace(" ", "_")" name="itemGroup" value="@item" />  @* @(item == Model.SelectedValue ? "checked" : "")   ekle*@
+                <label for="rb_@item.Replace(" ", "_")">@item</label>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BurgerAppDtos\BurgerAppDtos.csproj" />
+    <ProjectReference Include="..\BurgerOrderDAL\BurgerOrderDAL.csproj" />
   </ItemGroup>
 
 </Project>
