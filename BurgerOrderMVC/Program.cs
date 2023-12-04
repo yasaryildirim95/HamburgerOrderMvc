@@ -17,7 +17,7 @@ namespace BurgerOrderMVC
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
             });
-            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddSignInManager<AppUser>();
             builder.Services.AddBLDepencies();
             builder.Services.AddControllersWithViews();
 
