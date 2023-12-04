@@ -1,3 +1,4 @@
+using BurgerOrderBLL.Extension;
 using BurgerOrderDAL;
 using BurgerOrderEntity.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,7 @@ namespace BurgerOrderMVC
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
             });
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
-
+            builder.Services.AddBLDepencies();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

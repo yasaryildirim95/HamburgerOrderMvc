@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BurgerAppDtos\BurgerAppDtos.csproj" />
+    <ProjectReference Include="..\BurgerOrderDAL\BurgerOrderDAL.csproj" />
   </ItemGroup>
 
 </Project>
