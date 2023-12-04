@@ -11,7 +11,7 @@ namespace BurgerOrderBLL.Service
     {
         public Task<bool> Register(UserRegisterDto dto);
         public Task<bool> Login(UserLoginDto dto);
-        public Task<bool> UpdateUserInfo(UserUpdateDto dto);
+       
         public Task<bool> SignOut();
     }
 }

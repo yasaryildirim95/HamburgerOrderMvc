@@ -26,24 +26,43 @@ namespace BurgerOrderBLL.Manager
             _mapper = mapper;
         }
 
-        public Task<bool> Login(UserLoginDto dto)
+        public async Task<bool> Login(UserLoginDto dto)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null) 
+            {
+              return false;
+            
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+            if (!result.Succeeded) 
+            {
+
+                return false;
+            }
+            return true;
         }
 
-        public Task<bool> Register(UserRegisterDto dto)
+        public async Task<bool> Register(UserRegisterDto dto)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<AppUser>(dto);
+            var result = await _userManager.CreateAsync(user);
+            if (!result.Succeeded) 
+            {
+             
+                return false;
+            }
+            return true;
+
         }
 
-        public Task<bool> SignOut()
+        public async Task<bool> SignOut()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();    
+            return true;
         }
 
-        public Task<bool> UpdateUserInfo(UserUpdateDto dto)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
