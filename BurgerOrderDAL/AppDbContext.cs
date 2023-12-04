@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderDAL
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<AppUser,AppRole,string>
     {
 
         public DbSet<Menu> Menus { get; set; }
