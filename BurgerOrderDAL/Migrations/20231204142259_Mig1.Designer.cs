@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerOrderDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231204134650_Mig1")]
+    [Migration("20231204142259_Mig1")]
     partial class Mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,45 @@ namespace BurgerOrderDAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Menu", b =>
+            modelBuilder.Entity("BurgerOrderEntity.Concrete.Extras", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DataStatusEnum")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MenuID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuID");
+
+                    b.ToTable("Extras");
+                });
+
+            modelBuilder.Entity("BurgerOrderEntity.Concrete.Menu", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AppUserID")
                         .IsRequired()
@@ -59,13 +91,14 @@ namespace BurgerOrderDAL.Migrations
                     b.Property<int>("ProductSizeEnum")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubstanceID")
-                        .HasColumnType("int");
+                    b.Property<string>("SubstanceID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AppUserID");
 
@@ -74,11 +107,8 @@ namespace BurgerOrderDAL.Migrations
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Substance", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -101,8 +131,9 @@ namespace BurgerOrderDAL.Migrations
                     b.Property<bool>("Mayonez")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MenuID")
-                        .HasColumnType("int");
+                    b.Property<string>("MenuID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -117,7 +148,7 @@ namespace BurgerOrderDAL.Migrations
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("MenuID")
                         .IsUnique();
@@ -333,7 +364,26 @@ namespace BurgerOrderDAL.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasDiscriminator().HasValue("AppUser");
+                });
+
+            modelBuilder.Entity("BurgerOrderEntity.Concrete.Extras", b =>
+                {
+                    b.HasOne("BurgerOrderEntity.Concrete.Menu", "Menu")
+                        .WithMany("Extras")
+                        .HasForeignKey("MenuID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Menu", b =>
@@ -411,6 +461,8 @@ namespace BurgerOrderDAL.Migrations
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Menu", b =>
                 {
+                    b.Navigation("Extras");
+
                     b.Navigation("Substance")
                         .IsRequired();
                 });

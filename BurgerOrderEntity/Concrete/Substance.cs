@@ -10,6 +10,10 @@ namespace BurgerOrderEntity.Concrete
 {
     public class Substance : BaseEntity
     {
+        public Substance()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         public bool Marul { get; set; }
 
         public bool Turşu { get; set; }
@@ -24,7 +28,7 @@ namespace BurgerOrderEntity.Concrete
 
         //Navigation Prop
         public  Menu Menu { get; set; }
-        public int MenuID { get; set; }
+        public string MenuID { get; set; }
 
 
     }

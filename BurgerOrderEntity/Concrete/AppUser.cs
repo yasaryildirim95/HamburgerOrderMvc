@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BurgerOrderEntity.Abstract;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BurgerOrderEntity.Concrete
 {
     public class AppUser : IdentityUser
     {
-
-
+        public string Name { get; set; }
+        public string SurName { get; set; }
         //Navigation Props
         public List<Menu> Menus { get; set; }
     }

@@ -29,6 +29,8 @@ namespace BurgerOrderDAL.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -159,13 +161,12 @@ namespace BurgerOrderDAL.Migrations
                 name: "Menus",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Desctipton = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PriceForMedium = table.Column<int>(type: "int", nullable: false),
                     ProductSizeEnum = table.Column<int>(type: "int", nullable: false),
                     AppUserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SubstanceID = table.Column<int>(type: "int", nullable: false),
+                    SubstanceID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataStatusEnum = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -174,7 +175,7 @@ namespace BurgerOrderDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Menus", x => x.ID);
+                    table.PrimaryKey("PK_Menus", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Menus_AspNetUsers_AppUserID",
                         column: x => x.AppUserID,
@@ -184,18 +185,12 @@ namespace BurgerOrderDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Substances",
+                name: "Extras",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Marul = table.Column<bool>(type: "bit", nullable: false),
-                    Turşu = table.Column<bool>(type: "bit", nullable: false),
-                    Ketçap = table.Column<bool>(type: "bit", nullable: false),
-                    Mayonez = table.Column<bool>(type: "bit", nullable: false),
-                    Soğan = table.Column<bool>(type: "bit", nullable: false),
-                    Domates = table.Column<bool>(type: "bit", nullable: false),
-                    MenuID = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    MenuID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataStatusEnum = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -204,12 +199,41 @@ namespace BurgerOrderDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Substances", x => x.ID);
+                    table.PrimaryKey("PK_Extras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Extras_Menus_MenuID",
+                        column: x => x.MenuID,
+                        principalTable: "Menus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Substances",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Marul = table.Column<bool>(type: "bit", nullable: false),
+                    Turşu = table.Column<bool>(type: "bit", nullable: false),
+                    Ketçap = table.Column<bool>(type: "bit", nullable: false),
+                    Mayonez = table.Column<bool>(type: "bit", nullable: false),
+                    Soğan = table.Column<bool>(type: "bit", nullable: false),
+                    Domates = table.Column<bool>(type: "bit", nullable: false),
+                    MenuID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataStatusEnum = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Substances", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Substances_Menus_MenuID",
                         column: x => x.MenuID,
                         principalTable: "Menus",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -253,6 +277,11 @@ namespace BurgerOrderDAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Extras_MenuID",
+                table: "Extras",
+                column: "MenuID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Menus_AppUserID",
                 table: "Menus",
                 column: "AppUserID");
@@ -280,6 +309,9 @@ namespace BurgerOrderDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Extras");
 
             migrationBuilder.DropTable(
                 name: "Substances");

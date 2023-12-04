@@ -10,6 +10,10 @@ namespace BurgerOrderEntity.Concrete
 {
     public class Menu : BaseEntity
     {
+        public Menu()
+        {
+            Id=Guid.NewGuid().ToString();
+        }
         public string Desctipton { get; set; }
         public int PriceForMedium { get; set; }
         public ProductSize ProductSizeEnum { get; set; }
@@ -19,6 +23,8 @@ namespace BurgerOrderEntity.Concrete
         public string AppUserID { get; set; }
 
         public Substance Substance { get; set; }
-        public int SubstanceID { get; set; }
+        public string SubstanceID { get; set; }
+
+        public List<Extras> Extras { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace BurgerOrderEntity.Abstract
 {
     public abstract class BaseEntity : IEntity
     {
-        public int ID { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public DataStatus DataStatusEnum { get; set; }
         public DateTime Created { get; set; }
