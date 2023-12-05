@@ -11,8 +11,8 @@ namespace BurgerOrderEntity.Abstract
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public DataStatus DataStatusEnum { get; set; }
-        public DateTime Created { get; set; }
+        public DataStatus DataStatusEnum { get; set; } = DataStatus.Active;
+        public DateTime Created { get; set; } = DateTime.Now;
         public DateTime? Updated { get; set; }
         public DateTime? Deleted { get; set; }
     }

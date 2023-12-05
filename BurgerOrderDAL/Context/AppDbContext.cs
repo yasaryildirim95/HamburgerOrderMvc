@@ -29,6 +29,13 @@ namespace BurgerOrderDAL.Context
               .WithOne(s => s.Menu)
               .HasForeignKey<Substance>(s => s.MenuId);
 
+            mb.Entity<Substance>()
+                .HasData(new Substance { Id= "1",Name = "WhooperSubstance",Domates = true, Ketçap=true,Marul=true,Turşu=true});
+
+            mb.Entity<Menu>()
+                .HasData(new Menu { Name = "Whooper", Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.", PriceForMedium = 100,SubstanceId = "1"});
+
+
 
             base.OnModelCreating(mb);
         }

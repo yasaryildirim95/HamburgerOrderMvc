@@ -29,5 +29,26 @@ namespace BurgerOrderMVC.Controllers
 
             return View();
         }
+        //[HttpPost]
+        //public IActionResult Order()
+        //{
+
+        //    List<string> extras = new List<string>();
+        //    extras.Add("barbekü");
+        //    extras.Add("ranch");
+        //    List<string> menus = new List<string>();
+        //    menus.Add("whoper");
+        //    menus.Add("stek");
+
+
+
+
+
+        //    ViewBag.Extras = extras;
+        //    ViewBag.Menus = menus;
+
+
+        //    return View();
+        //}
     }
 }
