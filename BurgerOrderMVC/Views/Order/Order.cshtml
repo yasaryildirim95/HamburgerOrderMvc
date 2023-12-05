@@ -20,27 +20,71 @@
     <title>Sipariş Ver</title>
 </head>
 <body>
-    <div class="border border-1 col-4">
-        <label for="pickMenu">Menü</label>
-        <select id="pickMenu">
-            @foreach (var item in ViewBag.Menus)
-            {
-                <option>item1</option>
-            }
-        </select>
-        
-        
+    <div class="row">
+        <div class="border border rounded col-md-7 p-3 me-2 ">
+            <label class="pb-3" for="pickMenu">Menü</label>
 
-    </div>
+            <img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
 
-    <div>
-        @foreach (var item in ViewBag.Extras)
-        {
-            <div>
-                <input type="radio" id="rb_@item.Replace(" ", "_")" name="itemGroup" value="@item" />  @* @(item == Model.SelectedValue ? "checked" : "")   ekle*@
-                <label for="rb_@item.Replace(" ", "_")">@item</label>
+            <div class="pt-3">
+                <select class="form-select-lg" id="pickMenu" style="width:350px">
+                    @foreach (var item in ViewBag.Menus)
+                    {
+                        <option>item1</option>
+                    }
+                </select>
+
+                <select id="menuSize" class="form-select-lg float-end" style="width:150px">
+                    <option>Küçük</option>
+                    <option>Orta</option>
+                    <option>Büyük</option>
+                    <option>Mega</option>
+                </select>
+                <div>
+                    <div class="row justify-content-around mt-3">
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Marul" id="s1" />
+                            <label for="s1" class="h3">Marul</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Turşu" id="s2" />
+                            <label for="s1" class="h3">Turşu</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Ketcap" id="s3" />
+                            <label for="s1" class="h3">Ketcap</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Mayonez" id="s4" />
+                            <label for="s1" class="h3">Mayonez</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Soğan" id="s5" />
+                            <label for="s1" class="h3">Soğan</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="checkbox" class="btn-primary me-2" value="Domates" id="s6" />
+                            <label for="s1" class="h3">Domates</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        }
+        </div>
+
+        <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
+            @foreach (var item in ViewBag.Extras)
+            {
+                <div>
+                    <input type="checkbox" id="rb_@item.Replace(" ", "_")" name="itemGroup" value="@item" />
+                    <label for="rb_@item.Replace(" ", "_")">@item</label>
+                </div>
+            }
+            <div class="mt-auto ms-auto">
+                <input type="submit" value="Sepete Ekle" class="btn btn-primary" />
+            </div>
+        </div>
     </div>
 </body>
 </html>
