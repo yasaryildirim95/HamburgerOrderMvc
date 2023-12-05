@@ -1,5 +1,4 @@
 ﻿using BurgerAppDtos.Base;
-using BurgerAppDtos.User;
 using BurgerOrderBLL.ReuqestResponse;
 using BurgerOrderEntity.Abstract;
 using BurgerOrderEntity.Concrete;

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BurgerAppDtos.Base;
-using BurgerAppDtos.User;
 using BurgerOrderBLL.ReuqestResponse;
 using BurgerOrderBLL.Service.Base;
 using BurgerOrderDAL.Abstract;

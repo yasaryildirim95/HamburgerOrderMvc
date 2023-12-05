@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerOrderEntity", "Burger
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerAppDtos", "BurgerAppDtos\BurgerAppDtos.csproj", "{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerOrderViewModel", "BurgerOrderViewModel\BurgerOrderViewModel.csproj", "{C8F45BD3-318D-48B7-8243-5F581FC215D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA653BC2-B5BF-4BE9-8E5E-AAE41C79F43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F45BD3-318D-48B7-8243-5F581FC215D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F45BD3-318D-48B7-8243-5F581FC215D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F45BD3-318D-48B7-8243-5F581FC215D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F45BD3-318D-48B7-8243-5F581FC215D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
