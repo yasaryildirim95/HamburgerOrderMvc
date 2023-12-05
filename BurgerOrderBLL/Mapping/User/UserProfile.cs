@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Mapping.User
 {
-    internal class UserRegisterProfile : Profile
+    public class UserProfile : Profile
     {
-        public UserRegisterProfile()
+        public UserProfile()
         {
-            CreateMap<UserRegisterDto,AppUser>().ReverseMap();
+            CreateMap<UserProfileDto,AppUser>().ReverseMap();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BurgerOrderBLL.Mapping.User
     {
         public UserUpdateProfile()
         {
-            CreateMap<UserUpdateDto, AppUser>();   
+            CreateMap<UserUpdateDto, AppUser>().ReverseMap();   
         }
     }
 }
