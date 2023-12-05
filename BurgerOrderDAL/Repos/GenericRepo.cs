@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderDAL.Repos
 {
-    public class GenericRepo<T> :IRepo<T> where T : class,IEntity
+    public class GenericRepo<T> : IRepo<T> where T : class, IEntity
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected AppDbContext _context;
+        protected DbSet<T> _dbSet;
 
         public GenericRepo(AppDbContext context)
         {
@@ -26,19 +26,24 @@ namespace BurgerOrderDAL.Repos
             _dbSet.Add(entity);
         }
 
+        public void Update(T entity)
+        {
+            _dbSet.Update(entity);
+        }
+
         public void Delete(T entity)
         {
             _dbSet.Remove(entity);
         }
 
-        public T? Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
-        {
-            return _dbSet.Where(filter).FirstOrDefault();
-        }
-
         public T? Get(object id)
         {
             return _dbSet.Find(id);
+        }
+
+        public T? Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
+        {
+            return _dbSet.Where(filter).FirstOrDefault();
         }
 
         public List<T> GetAll(bool noTracking = true)
@@ -58,9 +63,5 @@ namespace BurgerOrderDAL.Repos
             return _dbSet.AsQueryable<T>();
         }
 
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-        }
     }
 }

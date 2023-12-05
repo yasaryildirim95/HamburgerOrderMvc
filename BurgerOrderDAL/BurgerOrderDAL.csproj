@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BurgerAppDtos\BurgerAppDtos.csproj" />
     <ProjectReference Include="..\BurgerOrderEntity\BurgerOrderEntity.csproj" />
   </ItemGroup>
 

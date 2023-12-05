@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BurgerOrderBLL.Service
+namespace BurgerAppDtos.Base
 {
-    public interface IMenuService
+    public interface IDTO
     {
     }
 }

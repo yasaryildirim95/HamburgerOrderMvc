@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BurgerAppDtos.User
+namespace BurgerAppDtos.Concrate
 {
     public class UserRegisterDto
     {
@@ -13,6 +13,6 @@ namespace BurgerAppDtos.User
         public string? UserName { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
-        
+
     }
 }

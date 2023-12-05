@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BurgerAppDtos.Base;
 using BurgerAppDtos.User;
-using BurgerOrderBLL.Service;
+using BurgerOrderBLL.ReuqestResponse;
+using BurgerOrderBLL.Service.Base;
 using BurgerOrderDAL.Abstract;
 using BurgerOrderDAL.UnitOfWork;
 using BurgerOrderEntity.Abstract;
@@ -13,45 +15,87 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Manager
 {
-    public class BaseManager<T> : IService<T> where T : class, IEntity
+    public class BaseManager<T, TDto> : IService<T, TDto> where T : class, IEntity where TDto : class, IDTO
     {
-        private readonly IUow _uow;
-        public void Add(T entity)
+        protected readonly IMapper _mapper;
+        protected readonly IUow _uow;
+
+        public BaseManager(IMapper mapper, IUow uow)
         {
-            _uow.GetRepository<T>().Add(entity);
-            _uow.SaveChanges();
-            
+            _mapper = mapper;
+            _uow = uow;
         }
 
-        public void Delete(object id)
+        public Response Delete(TDto dto)
         {
-            var item = _uow.GetRepository<T>().Get(id);
-            if (item != null) 
+            try
             {
-              _uow.GetRepository<T>().Delete(item);
-                _uow.SaveChanges() ;
-            
+                var entity = _mapper.Map<T>(dto);
+                _uow.GetRepository<T>().Delete(entity);
+                _uow.SaveChanges();
+                return Response.Success("Deletion was successful.");
+            }
+            catch
+            {
+                return Response.Failure("Deletion was unsuccessful");
             }
         }
 
-        public T? Get(object id)
+        public Response<TDto> Get(int id)
         {
-            return _uow.GetRepository<T>().Get(id);
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _uow.GetRepository<T>().GetAll();
-        }
-
-        public void Update(T entity)
-        {
-            var item = _uow.GetRepository<T>().Get(entity);
-            if (item != null) 
+            try
             {
-              _uow.GetRepository<T>().Update(item);
+                var entity = _uow.GetRepository<T>().Get(id);
+                var dto = _mapper.Map<TDto>(entity);
+                return Response<TDto>.Success(dto, "Acquirement was successful.");
+            }
+            catch
+            {
+                return Response<TDto>.Failure("Acquirement was unsuccessful");
+            }
+        }
+
+        public Response<IEnumerable<TDto>> GetAll()
+        {
+            try
+            {
+                var entities = _uow.GetRepository<T>().GetAll(true);
+                var dtos = _mapper.Map<List<TDto>>(entities);
+                return Response<IEnumerable<TDto>>.Success(dtos, "Acquirement was successful.");
+            }
+            catch
+            {
+                return Response<IEnumerable<TDto>>.Failure("Acquirement was unsuccessful");
+            }
+        }
+
+        public Response Insert(TDto dto)
+        {
+            try
+            {
+                var entity = _mapper.Map<T>(dto);
+                _uow.GetRepository<T>().Add(entity);
                 _uow.SaveChanges();
-            
+                return Response.Success("Insertion was successful.");
+            }
+            catch
+            {
+                return Response.Failure("Insertion was unsuccessful");
+            }
+        }
+
+        public Response Update(TDto dto)
+        {
+            try
+            {
+                var entity = _mapper.Map<T>(dto);
+                _uow.GetRepository<T>().Update(entity);
+                _uow.SaveChanges();
+                return Response.Success("Updating was successful.");
+            }
+            catch
+            {
+                return Response.Failure("Updating was unsuccessful");
             }
         }
     }
