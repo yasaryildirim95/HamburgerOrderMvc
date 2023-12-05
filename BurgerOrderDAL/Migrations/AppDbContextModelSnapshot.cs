@@ -216,6 +216,38 @@ namespace BurgerOrderDAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6901),
+                            DataStatusEnum = 0,
+                            Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
+                            Name = "Whooper",
+                            PriceForMedium = 100,
+                            SubstanceId = "1"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6971),
+                            DataStatusEnum = 0,
+                            Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
+                            Name = "BigKing",
+                            PriceForMedium = 120,
+                            SubstanceId = "2"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6988),
+                            DataStatusEnum = 0,
+                            Description = "Mikrodalgada tavuk burger",
+                            Name = "ChikenRoyal",
+                            PriceForMedium = 60,
+                            SubstanceId = "3"
+                        });
                 });
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Order", b =>
@@ -315,6 +347,50 @@ namespace BurgerOrderDAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Substances");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6960),
+                            DataStatusEnum = 0,
+                            Domates = true,
+                            Ketçap = true,
+                            Marul = true,
+                            Mayonez = false,
+                            MenuId = "1",
+                            Name = "WhooperSubstance",
+                            Soğan = false,
+                            Turşu = true
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6980),
+                            DataStatusEnum = 0,
+                            Domates = false,
+                            Ketçap = true,
+                            Marul = false,
+                            Mayonez = false,
+                            MenuId = "2",
+                            Name = "BigKingSubstance",
+                            Soğan = false,
+                            Turşu = true
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Created = new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6996),
+                            DataStatusEnum = 0,
+                            Domates = false,
+                            Ketçap = true,
+                            Marul = true,
+                            Mayonez = false,
+                            MenuId = "3",
+                            Name = "ChikenRoyalSubstance",
+                            Soğan = false,
+                            Turşu = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

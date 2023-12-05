@@ -1,4 +1,5 @@
-﻿using BurgerOrderEntity.Concrete;
+﻿using BurgerAppDtos.Concrate;
+using BurgerOrderEntity.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -29,11 +30,73 @@ namespace BurgerOrderDAL.Context
               .WithOne(s => s.Menu)
               .HasForeignKey<Substance>(s => s.MenuId);
 
+            mb.Entity<Menu>()
+                .HasData(new Menu
+                {
+                    Id = "1",
+                    Name = "Whooper",
+                    Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
+                    PriceForMedium = 100,
+                    SubstanceId = "1",
+                });
+
             mb.Entity<Substance>()
-                .HasData(new Substance { Id= "1",Name = "WhooperSubstance",Domates = true, Ketçap=true,Marul=true,Turşu=true});
+                .HasData(new Substance
+                {
+                    Id = "1",
+                    Name = "WhooperSubstance",
+                    Domates = true,
+                    Ketçap = true,
+                    Marul = true,
+                    Turşu = true,
+                    MenuId = "1",
+                });
 
             mb.Entity<Menu>()
-                .HasData(new Menu { Name = "Whooper", Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.", PriceForMedium = 100,SubstanceId = "1"});
+                .HasData(new Menu
+                {
+                    Id = "2",
+                    Name = "BigKing",
+                    Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
+                    PriceForMedium = 120,
+                    SubstanceId = "2",
+                });
+
+            mb.Entity<Substance>()
+                .HasData(new Substance
+                {
+                    Id = "2",
+                    Name = "BigKingSubstance",
+                    Domates = false,
+                    Ketçap = true,
+                    Marul = false,
+                    Turşu = true,
+                    MenuId = "2",
+                });
+
+            mb.Entity<Menu>()
+                .HasData(new Menu
+                {
+                    Id = "3",
+                    Name = "ChikenRoyal",
+                    Description = "Mikrodalgada tavuk burger",
+                    PriceForMedium = 60,
+                    SubstanceId = "3",
+                });
+
+            mb.Entity<Substance>()
+                .HasData(new Substance
+                {
+                    Id = "3",
+                    Name = "ChikenRoyalSubstance",
+                    Domates = false,
+                    Ketçap = true,
+                    Marul = true,
+                    Turşu = false,
+                    MenuId = "3",
+                });
+
+
 
 
 

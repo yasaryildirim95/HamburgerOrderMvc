@@ -269,6 +269,36 @@ namespace BurgerOrderDAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
+                values: new object[] { "1", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6901), 0, null, "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.", "Whooper", 100, "1", null });
+
+            migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
+                values: new object[] { "2", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6971), 0, null, "Izgara ateeşinde olmayan Kötü Hamburhger", "BigKing", 120, "2", null });
+
+            migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
+                values: new object[] { "3", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6988), 0, null, "Mikrodalgada tavuk burger", "ChikenRoyal", 60, "3", null });
+
+            migrationBuilder.InsertData(
+                table: "Substances",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
+                values: new object[] { "1", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6960), 0, null, true, true, true, false, "1", "WhooperSubstance", false, true, null });
+
+            migrationBuilder.InsertData(
+                table: "Substances",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
+                values: new object[] { "2", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6980), 0, null, false, true, false, false, "2", "BigKingSubstance", false, true, null });
+
+            migrationBuilder.InsertData(
+                table: "Substances",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
+                values: new object[] { "3", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6996), 0, null, false, true, true, false, "3", "ChikenRoyalSubstance", false, false, null });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
