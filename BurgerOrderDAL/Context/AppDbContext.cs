@@ -25,11 +25,7 @@ namespace BurgerOrderDAL.Context
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<Menu>()
-              .HasOne(m => m.Substance)
-              .WithOne(s => s.Menu)
-              .HasForeignKey<Substance>(s => s.MenuId);
-
+            
             mb.Entity<Menu>()
                 .HasData(new Menu
                 {
@@ -48,8 +44,7 @@ namespace BurgerOrderDAL.Context
                     Domates = true,
                     Ketçap = true,
                     Marul = true,
-                    Turşu = true,
-                    MenuId = "1",
+                    Turşu = true
                 });
 
             mb.Entity<Menu>()
@@ -59,7 +54,7 @@ namespace BurgerOrderDAL.Context
                     Name = "BigKing",
                     Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
                     PriceForMedium = 120,
-                    SubstanceId = "2",
+                    SubstanceId = "2"
                 });
 
             mb.Entity<Substance>()
@@ -70,8 +65,7 @@ namespace BurgerOrderDAL.Context
                     Domates = false,
                     Ketçap = true,
                     Marul = false,
-                    Turşu = true,
-                    MenuId = "2",
+                    Turşu = true
                 });
 
             mb.Entity<Menu>()
@@ -81,7 +75,7 @@ namespace BurgerOrderDAL.Context
                     Name = "ChikenRoyal",
                     Description = "Mikrodalgada tavuk burger",
                     PriceForMedium = 60,
-                    SubstanceId = "3",
+                    SubstanceId = "3"
                 });
 
             mb.Entity<Substance>()
@@ -92,8 +86,7 @@ namespace BurgerOrderDAL.Context
                     Domates = false,
                     Ketçap = true,
                     Marul = true,
-                    Turşu = false,
-                    MenuId = "3",
+                    Turşu = false
                 });
 
 

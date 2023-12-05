@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderViewModel
 {
-    internal class OrderViewModel
+    public class OrderViewModel
     {
         public string Adress { get; set; }
         public int TotalPrice { get; set; }

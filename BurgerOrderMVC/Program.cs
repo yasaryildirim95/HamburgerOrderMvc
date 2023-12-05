@@ -15,7 +15,7 @@ namespace BurgerOrderMVC
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("YasarCon"));
             });
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
             {
