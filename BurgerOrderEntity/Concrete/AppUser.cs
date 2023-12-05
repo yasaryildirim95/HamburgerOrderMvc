@@ -18,7 +18,8 @@ namespace BurgerOrderEntity.Concrete
 
         public string Name { get; set; }
         public string SurName { get; set; }
+
         //Navigation Props
-        public List<Menu> Menus { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

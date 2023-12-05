@@ -14,17 +14,17 @@ namespace BurgerOrderEntity.Concrete
         {
             Id=Guid.NewGuid().ToString();
         }
-        public string Desctipton { get; set; }
+        public string Description { get; set; }
         public int PriceForMedium { get; set; }
-        public ProductSize ProductSizeEnum { get; set; }
 
         //Navigation Props
-        public AppUser AppUser { get; set; }
-        public string AppUserID { get; set; }
+        public List<Order> Orders { get; set; }
+        public List<Extras> Extras { get; set; }
+
 
         public Substance Substance { get; set; }
-        public string SubstanceID { get; set; }
+        public string SubstanceId { get; set; }
 
-        public List<Extras> Extras { get; set; }
+
     }
 }

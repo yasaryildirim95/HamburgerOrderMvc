@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BurgerOrderDAL
+namespace BurgerOrderDAL.Context
 {
-    public class AppDbContext : IdentityDbContext<AppUser,AppRole,string>
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
-
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Substance> Substances { get; set; }
 
@@ -27,7 +27,7 @@ namespace BurgerOrderDAL
             mb.Entity<Menu>()
               .HasOne(m => m.Substance)
               .WithOne(s => s.Menu)
-              .HasForeignKey<Substance>(s => s.MenuID);
+              .HasForeignKey<Substance>(s => s.MenuId);
 
 
             base.OnModelCreating(mb);
