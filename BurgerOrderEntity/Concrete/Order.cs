@@ -14,6 +14,8 @@ namespace BurgerOrderEntity.Concrete
         public int TotalPrice { get; set; }
         public ProductSize MenuSize { get; set; }
 
+        public int Amount { get; set; }
+
         //Navigation Props
         public AppUser AppUser { get; set; }
         public string AppUserId { get; set; }
