@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BurgerOrderBLL.Manager;
+using BurgerOrderBLL.Service.Contrate;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,10 @@ namespace BurgerOrderBLL.Extension
         public static void AddBLDepencies(this IServiceCollection service) 
         {
             service.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
+
+            service.AddScoped<IAccountService,AccountManager>();
         
         
         }
