@@ -2,9 +2,7 @@
 
 @* @model ViewModel *@
 
-
-<!DOCTYPE html>
-@if(ViewBag.Menus == null)
+@if (ViewBag.Menus == null)
 {
     <p>Lütfen menü oluşturun!</p>
     return;
@@ -16,77 +14,109 @@
 }
 
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Sipariş Ver</title>
-</head>
-<body>
-    <div class="row">
-        <div class="border border rounded col-md-7 p-3 me-2 ">
-            <label class="pb-3" for="pickMenu">Menü</label>
+<title>Sipariş Ver</title>
 
-            <img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
+<div class="row">
+    <div class="border border rounded col-md-7 p-3 me-2 ">
+        <label class="pb-3" for="pickMenu">Menü</label>
 
-            <div class="pt-3">
-                <select class="form-select-lg" id="pickMenu" style="width:350px">
-                    @foreach (var item in (List<MenuDto>)ViewBag.Menus)
-                    {
-                        <option>@item.Name</option>
-                    }
-                </select>
+        <img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
 
-                <select id="menuSize" class="form-select-lg float-end" style="width:150px">
-                    <option>Küçük</option>
-                    <option>Orta</option>
-                    <option>Büyük</option>
-                    <option>Mega</option>
-                </select>
-                <div>
-                    <div class="row justify-content-around mt-3">
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Marul" id="s1" />
-                            <label for="s1" class="h3">Marul</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Turşu" id="s2" />
-                            <label for="s1" class="h3">Turşu</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Ketcap" id="s3" />
-                            <label for="s1" class="h3">Ketcap</label>
-                        </div>
+        <div class="pt-3">
+            <select class="form-select-lg" id="pickMenu" style="width:350px" onchange="updateCheckboxes()">
+                @foreach (var item in (List<MenuDto>)ViewBag.Menus)
+                {
+                    <option value="@Json.Serialize(item)">@item.Name</option>
+                }
+            </select>
+
+            <select id="menuSize" class="form-select-lg float-end" style="width:150px">
+                <option>Küçük</option>
+                <option>Orta</option>
+                <option>Büyük</option>
+                <option>Mega</option>
+            </select>
+            <div>
+                <div class="row justify-content-around mt-3">
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s1" />
+                        <label for="s1" class="h3">Marul</label>
                     </div>
-                    <div class="row justify-content-around">
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Mayonez" id="s4" />
-                            <label for="s1" class="h3">Mayonez</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Soğan" id="s5" />
-                            <label for="s1" class="h3">Soğan</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" value="Domates" id="s6" />
-                            <label for="s1" class="h3">Domates</label>
-                        </div>
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s2" />
+                        <label for="s1" class="h3">Turşu</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s3" />
+                        <label for="s1" class="h3">Ketcap</label>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
-            @foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
-            {
-                <div>
-                    <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="itemGroup" value="@item" />
-                    <label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
+                <div class="row justify-content-around">
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s4" />
+                        <label for="s1" class="h3">Mayonez</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s5" />
+                        <label for="s1" class="h3">Soğan</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="checkbox" class="btn-primary me-2" id="s6" />
+                        <label for="s1" class="h3">Domates</label>
+                    </div>
                 </div>
-            }
-            <div class="mt-auto ms-auto">
-                <input type="submit" value="Sepete Ekle" class="btn btn-primary" />
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
+        @foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
+        {
+            <div>
+                <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="itemGroup" value="@item" />
+                <label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
+            </div>
+        }
+        <div class="mt-auto ms-auto">
+            <input type="submit" value="Sepete Ekle" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateCheckboxes() {
+        // Get the selected menu from the dropdown
+        var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
+        var selectedMenu = JSON.parse(selectedOption.value);
+
+        // Get all checkboxes
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        // Uncheck all checkboxes
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+
+        console.log(selectedMenu)
+
+        // Check the checkboxes corresponding to the selected menu
+        if (selectedMenu.marul) {
+            document.getElementById("s1").checked = true;
+        }
+        if (selectedMenu.tursu) {
+            document.getElementById("s2").checked = true;
+        }
+        if (selectedMenu.ketcap) {
+            document.getElementById("s3").checked = true;
+        }
+        if (selectedMenu.mayonez) {
+            document.getElementById("s4").checked = true;
+        }
+        if (selectedMenu.sogan) {
+            document.getElementById("s5").checked = true;
+        }
+        if (selectedMenu.domates) {
+            document.getElementById("s6").checked = true;
+        }
+    }
+</script>
