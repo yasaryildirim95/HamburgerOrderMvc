@@ -23,19 +23,21 @@ namespace BurgerOrderBLL.Manager
        
 
 
-        public async Task<Response> CalculateOrderPrice(Menu selectedMenu, Extras extra, Order order) 
+        public async Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extras>extras, Order order,ProductSize size) 
         {
             int menuPrice = selectedMenu.PriceForMedium;
-            int extraprice = extra.Price;
-            int amount = order.Amount;
-            ProductSize menuSize = order.MenuSize;
-
-            order.TotalPrice 
             
+            int amount = order.Amount;
+            decimal productSize = size.PriceMultiplier;
+            int selectedExtra = extras.Sum(extra => extra.Price);
 
 
-        
-        
+
+
+            order.TotalPrice = (((menuPrice * productSize) +selectedExtra ) * amount);
+
+            return order.TotalPrice;
+
         }
     }
 }

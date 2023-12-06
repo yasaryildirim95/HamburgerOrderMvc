@@ -10,6 +10,10 @@ namespace BurgerOrderEntity.Concrete
 {
     public class Order :  BaseEntity
     {
+        public Order()
+        {
+            Extras = new();
+        }
         public string Adress { get; set; }
         public decimal TotalPrice { get; set; }
 
@@ -24,6 +28,8 @@ namespace BurgerOrderEntity.Concrete
 
         public Menu Menu { get; set; }
         public string MenuId { get; set; }
+
+        public List<Extras> Extras { get; set; }
 
     }
 }
