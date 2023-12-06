@@ -1,0 +1,22 @@
+﻿@using BurgerAppDtos.Concrate
+
+<h1>Create Menu</h1>
+
+@model MenuDto
+
+<form method="post" asp-for="Create">
+    <div>
+        <label asp-for="Name">Menu Name:</label>
+        <input type="text" name="Name" id="Name" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Description">Menu Description:</label>
+        <input type="text" name="Description" id="Description" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="PriceForMedium">Menu Price for Medium Size:</label>
+        <input type="number" name="PriceForMedium" id="PriceForMedium" class="form-control" />
+    </div>
+
+    <input type="submit" value="Menu Oluştur"/>
+</form>

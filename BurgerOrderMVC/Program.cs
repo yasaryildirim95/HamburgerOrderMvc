@@ -1,5 +1,8 @@
 using BurgerOrderBLL.Extension;
+using BurgerOrderBLL.Service.Base;
+using BurgerOrderDAL.Abstract;
 using BurgerOrderDAL.Context;
+using BurgerOrderDAL.UnitOfWork;
 using BurgerOrderEntity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +28,7 @@ namespace BurgerOrderMVC
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
             builder.Services.AddBLDepencies();
+            builder.Services.AddScoped<IUow, Uow>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

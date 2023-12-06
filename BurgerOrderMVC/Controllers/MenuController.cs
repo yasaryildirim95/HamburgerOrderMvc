@@ -21,6 +21,8 @@ namespace BurgerOrderMVC.Controllers
         // GET: MenuController/Create
         public ActionResult Create()
         {
+
+
             return View();
         }
 
