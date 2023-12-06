@@ -4,7 +4,7 @@
 
 @model MenuDto
 
-<form method="post" asp-for="Create">
+<form method="post" asp-action="Create">
     <div>
         <label asp-for="Name">Menu Name:</label>
         <input type="text" name="Name" id="Name" class="form-control" />
@@ -16,6 +16,37 @@
     <div>
         <label asp-for="PriceForMedium">Menu Price for Medium Size:</label>
         <input type="number" name="PriceForMedium" id="PriceForMedium" class="form-control" />
+    </div>
+
+    <div>
+        <div class="row justify-content-around mt-3">
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Marul" id="s1" />
+                <label for="s1" class="h3">Marul</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Turşu" id="s2" />
+                <label for="s1" class="h3">Turşu</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Ketcap" id="s3" />
+                <label for="s1" class="h3">Ketcap</label>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Mayonez" id="s4" />
+                <label for="s1" class="h3">Mayonez</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Soğan" id="s5" />
+                <label for="s1" class="h3">Soğan</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" value="Domates" id="s6" />
+                <label for="s1" class="h3">Domates</label>
+            </div>
+        </div>
     </div>
 
     <input type="submit" value="Menu Oluştur"/>

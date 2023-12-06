@@ -1,4 +1,6 @@
-﻿@* @model ViewModel *@
+﻿@using BurgerAppDtos.Concrate
+
+@* @model ViewModel *@
 
 
 <!DOCTYPE html>
@@ -28,9 +30,9 @@
 
             <div class="pt-3">
                 <select class="form-select-lg" id="pickMenu" style="width:350px">
-                    @foreach (var item in ViewBag.Menus)
+                    @foreach (var item in (List<MenuDto>)ViewBag.Menus)
                     {
-                        <option>item1</option>
+                        <option>@item.Name</option>
                     }
                 </select>
 
@@ -74,11 +76,11 @@
         </div>
 
         <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
-            @foreach (var item in ViewBag.Extras)
+            @foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
             {
                 <div>
-                    <input type="checkbox" id="rb_@item.Replace(" ", "_")" name="itemGroup" value="@item" />
-                    <label for="rb_@item.Replace(" ", "_")">@item</label>
+                    <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="itemGroup" value="@item" />
+                    <label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
                 </div>
             }
             <div class="mt-auto ms-auto">

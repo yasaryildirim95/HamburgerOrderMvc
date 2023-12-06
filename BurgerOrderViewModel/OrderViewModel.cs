@@ -11,7 +11,7 @@ namespace BurgerOrderViewModel
     {
         public string Adress { get; set; }
         public int TotalPrice { get; set; }
-        public ProductSize MenuSize { get; set; } = ProductSize.Small;
+        public string MenuSize { get; set; } 
         public string AppUserId { get; set; }
         public string MenuId { get; set; }
 

@@ -23,7 +23,6 @@ namespace BurgerOrderMVC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Admin")]
         public IActionResult List()
         {
             var ListMenuAction = _menuService.GetAll();
@@ -35,21 +34,28 @@ namespace BurgerOrderMVC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="Admin")]
         public IActionResult Create(MenuDto newMenuDto) 
         {
             var InsertAction = _menuService.Insert(newMenuDto);
             if (InsertAction.IsSuccess)
             {
+
+
                 return View();
             }
             return View();
             
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            
+            return View();
+
+        }
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(MenuDto DeletedMenuDto)
         {
 
@@ -61,8 +67,6 @@ namespace BurgerOrderMVC.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Authorize(Roles ="Admin")]
         public IActionResult Delete(MenuDto DeletedMenuDto)
         {
 

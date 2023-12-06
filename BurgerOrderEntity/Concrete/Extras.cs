@@ -14,8 +14,6 @@ namespace BurgerOrderEntity.Concrete
             Id = Guid.NewGuid().ToString();
         }
         public int Price { get; set; }
-        public Order Order { get; set; }
-        public string OrderId { get; set; }
 
     }
 }

@@ -101,7 +101,8 @@ namespace BurgerOrderDAL.Context
             mb.Entity<ProductSize>()
                 .HasData(new ProductSize { Id = "4", Name = "Mega", PriceMultiplier = (decimal)1.5 });
 
-
+            mb.Entity<Extras>()
+                .HasData(new Extras { Id = "1", Name = "Ranch Sos", Price = 10 });
 
             base.OnModelCreating(mb);
         }

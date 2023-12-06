@@ -1,5 +1,7 @@
 using BurgerOrderBLL.Extension;
+using BurgerOrderDAL.Abstract;
 using BurgerOrderDAL.Context;
+using BurgerOrderDAL.UnitOfWork;
 using BurgerOrderEntity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,7 @@ namespace BurgerOrderMVC
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("OzanCon"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("YasarCon"));
             });
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
             {
@@ -24,6 +26,7 @@ namespace BurgerOrderMVC
             })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+            builder.Services.AddScoped<IUow, Uow>();
             builder.Services.AddBLDepencies();
             builder.Services.AddControllersWithViews();
 

@@ -9,6 +9,7 @@ namespace BurgerAppDtos.Concrate
 {
     public class ExtrasDto : IDTO
     {
-
+        public string Name { get; set; }
+        public int Price { get; set; }
     }
 }
