@@ -1,81 +1,28 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BurgerOrderViewModel;
+using AutoMapper;
+using BurgerOrderBLL.Service.Contrate;
+using BurgerAppDtos.Concrate;
+using BurgerOrderEntity.Concrete;
 
 namespace BurgerOrderMVC.Controllers
 {
     public class MenuController : Controller
     {
-        // GET: MenuController
-        public ActionResult Index()
+        private readonly IMenuService _menuService;
+        private readonly IMapper _mapper;
+
+        public MenuController(IMenuService menuService, IMapper mapper)
         {
+            _menuService = menuService;
+            _mapper = mapper;
+        }
+
+        public IActionResult CreateMenu(MenuDto newMenuDto) 
+        {
+            _menuService.Insert(newMenuDto);
             return View();
-        }
-
-        // GET: MenuController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: MenuController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MenuController/Create
-        [HttpPost]
-        public ActionResult Create(MenuViewModel menuViewModel)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MenuController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MenuController/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MenuController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MenuController/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
