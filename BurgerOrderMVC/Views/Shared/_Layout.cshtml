@@ -33,8 +33,22 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Siparişleri Listele</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Menu</a>
+                            <ul class="submenu">
+                                <li><a class="nav-link text-dark" asp-controller="Menu" asp-action="Create">Menu Ekle</a></li>
+                                <li><a class="nav-link text-dark" asp-controller="Menu" asp-action="List">Menuleri Listele</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Extralar</a>
+                            <ul class="submenu">
+                                <li><a class="nav-link text-dark" asp-controller="Extra" asp-action="Create">Menu Ekle</a></li>
+                                <li><a class="nav-link text-dark" asp-controller="Extra" asp-action="List">Menuleri Listele</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                    @* <partial name="_LoginPartial" /> *@
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
