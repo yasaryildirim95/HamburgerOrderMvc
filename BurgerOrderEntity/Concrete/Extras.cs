@@ -15,8 +15,5 @@ namespace BurgerOrderEntity.Concrete
         }
         public int Price { get; set; }
 
-        //Navigation Props
-        public Menu Menu { get; set; }
-        public string MenuId { get; set; }
     }
 }
