@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Service.Contrate
 {
-    public interface IOrderService : IService<Order, OrderDto>
+    internal interface IProductSizeService : IService<ProductSize, ProductSizeDto>
     {
-        Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extras> extras, Order order, ProductSize size);
     }
 }

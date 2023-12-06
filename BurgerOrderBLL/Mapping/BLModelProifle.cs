@@ -24,6 +24,7 @@ namespace BurgerOrderBLL.Mapping
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Extras, ExtrasDto>().ReverseMap();
             CreateMap<Substance, SubstanceDto>().ReverseMap();
+            CreateMap<ProductSize,ProductSizeDto>().ReverseMap();
 
         }
     }
