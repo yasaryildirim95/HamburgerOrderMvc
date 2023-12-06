@@ -11,9 +11,10 @@ namespace BurgerOrderEntity.Concrete
     public class Order :  BaseEntity
     {
         public string Adress { get; set; }
-        public int TotalPrice { get; set; }
-        public ProductSize MenuSize { get; set; }
+        public decimal TotalPrice { get; set; }
 
+        public ProductSize ProductSize { get; set; }
+        public string ProductSizeId { get; set; }
         public int Amount { get; set; }
 
         //Navigation Props
