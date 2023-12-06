@@ -89,7 +89,17 @@ namespace BurgerOrderDAL.Context
                     Turşu = false
                 });
 
+            mb.Entity<ProductSize>()
+                .HasData(new ProductSize { Id = "1", Name = "Small", PriceMultiplier = (decimal)0.9 });
 
+            mb.Entity<ProductSize>()
+                .HasData(new ProductSize { Id = "2", Name = "Medium", PriceMultiplier = (decimal)1 });
+
+            mb.Entity<ProductSize>()
+                .HasData(new ProductSize { Id = "3", Name = "Large", PriceMultiplier = (decimal)1.2 });
+
+            mb.Entity<ProductSize>()
+                .HasData(new ProductSize { Id = "4", Name = "Mega", PriceMultiplier = (decimal)1.5 });
 
 
 
