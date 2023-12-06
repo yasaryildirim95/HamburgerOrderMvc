@@ -1,4 +1,5 @@
-﻿using BurgerOrderBLL.Manager;
+﻿using BurgerAppDtos.Concrate;
+using BurgerOrderBLL.Manager;
 using BurgerOrderBLL.Service.Contrate;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,26 +40,13 @@ namespace BurgerOrderMVC.Controllers
 
             return View();
         }
-        //[HttpPost]
-        //public IActionResult Order()
-        //{
 
-        //    List<string> extras = new List<string>();
-        //    extras.Add("barbekü");
-        //    extras.Add("ranch");
-        //    List<string> menus = new List<string>();
-        //    menus.Add("whoper");
-        //    menus.Add("stek");
+        [HttpPost]
+        public IActionResult Order(OrderDto orderDTO)
+        {
+            var res = orderService.Insert(orderDTO);
 
-
-
-
-
-        //    ViewBag.Extras = extras;
-        //    ViewBag.Menus = menus;
-
-
-        //    return View();
-        //}
+            return View();
+        }
     }
 }
