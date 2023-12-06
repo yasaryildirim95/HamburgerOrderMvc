@@ -1,4 +1,5 @@
 ﻿using BurgerOrderBLL.Manager;
+using BurgerOrderBLL.Service.Base;
 using BurgerOrderBLL.Service.Contrate;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,15 +19,15 @@ namespace BurgerOrderBLL.Extension
 
 
 
-            service.AddScoped<IAccountService,AccountManager>();
-            service.AddScoped<IExtrasService,ExtrasManager>();
-            service.AddScoped<IMenuService,MenuManager>();
-            service.AddScoped<IOrderService,OrderManager>();
-            service.AddScoped<ISubstanceService,SubstanceManager>();
-            
+            service.AddScoped<IAccountService, AccountManager>();
+            //service.AddScoped<IExtrasService,ExtrasManager>();
+            //service.AddScoped<IMenuService,MenuManager>();
+            //service.AddScoped<IOrderService,OrderManager>();
+            //service.AddScoped<ISubstanceService,SubstanceManager>();
 
-        
-        
+
+
+
         }
     }
 }

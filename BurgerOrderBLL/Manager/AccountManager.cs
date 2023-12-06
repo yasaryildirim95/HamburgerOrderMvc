@@ -18,14 +18,12 @@ namespace BurgerOrderBLL.Manager
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly ClaimsPrincipal _user;
         private readonly IMapper _mapper;
 
-        public AccountManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ClaimsPrincipal user, IMapper mapper)
+        public AccountManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _user = user;
             _mapper = mapper;
         }
 
@@ -89,7 +87,7 @@ namespace BurgerOrderBLL.Manager
         public async Task<Response> Register(UserRegisterDto dto)
         {
             var user = _mapper.Map<AppUser>(dto);
-            var result = await _userManager.CreateAsync(user);
+            var result = await _userManager.CreateAsync(user,dto.Password);
             if (!result.Succeeded)
             {
 
