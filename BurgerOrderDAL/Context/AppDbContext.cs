@@ -33,19 +33,10 @@ namespace BurgerOrderDAL.Context
                     Name = "Whooper",
                     Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
                     PriceForMedium = 100,
-                    SubstanceId = "1",
+                    
                 });
 
-            mb.Entity<Substance>()
-                .HasData(new Substance
-                {
-                    Id = "1",
-                    Name = "WhooperSubstance",
-                    Domates = true,
-                    Ketçap = true,
-                    Marul = true,
-                    Turşu = true
-                });
+           
 
             mb.Entity<Menu>()
                 .HasData(new Menu
@@ -54,19 +45,10 @@ namespace BurgerOrderDAL.Context
                     Name = "BigKing",
                     Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
                     PriceForMedium = 120,
-                    SubstanceId = "2"
+                    
                 });
 
-            mb.Entity<Substance>()
-                .HasData(new Substance
-                {
-                    Id = "2",
-                    Name = "BigKingSubstance",
-                    Domates = false,
-                    Ketçap = true,
-                    Marul = false,
-                    Turşu = true
-                });
+                
 
             mb.Entity<Menu>()
                 .HasData(new Menu
@@ -75,19 +57,10 @@ namespace BurgerOrderDAL.Context
                     Name = "ChikenRoyal",
                     Description = "Mikrodalgada tavuk burger",
                     PriceForMedium = 60,
-                    SubstanceId = "3"
+                    
                 });
 
-            mb.Entity<Substance>()
-                .HasData(new Substance
-                {
-                    Id = "3",
-                    Name = "ChikenRoyalSubstance",
-                    Domates = false,
-                    Ketçap = true,
-                    Marul = true,
-                    Turşu = false
-                });
+           
 
             mb.Entity<ProductSize>()
                 .HasData(new ProductSize { Id = "1", Name = "Small", PriceMultiplier = (decimal)0.9 });
@@ -103,6 +76,9 @@ namespace BurgerOrderDAL.Context
 
             mb.Entity<Extras>()
                 .HasData(new Extras { Id = "1", Name = "Ranch Sos", Price = 10 });
+
+
+            mb.Entity<Substance>().HasOne(s => s.Menu).WithMany(s => s.Substances).HasForeignKey(x => x.MenuId);
 
             base.OnModelCreating(mb);
         }
