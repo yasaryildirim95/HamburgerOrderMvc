@@ -13,14 +13,12 @@ namespace BurgerOrderMVC.Controllers
     public class MenuController : Controller
     {
         private readonly IMenuService _menuService;
-        private readonly ISubstanceService _substanceService;
         private readonly IMapper _mapper;
 
 
-        public MenuController(IMenuService menuService,ISubstanceService substanceService, IMapper mapper)
+        public MenuController(IMenuService menuService, IMapper mapper)
         {
             _menuService = menuService;
-            _substanceService = substanceService;
             _mapper = mapper;
         }
 
@@ -36,18 +34,15 @@ namespace BurgerOrderMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(MenuDto newMenuDto, SubstanceDto newSubstanceDto) 
+        public IActionResult Create(MenuDto newMenuDto) 
         {
-            var InsertSubstanceAction =_substanceService.Insert(newSubstanceDto);
-            if (InsertSubstanceAction.IsSuccess)
-            {
-                newMenuDto.SubstanceID = newSubstanceDto.Id;
-                var InsertMenuAction = _menuService.Insert(newMenuDto);
-                if (InsertMenuAction.IsSuccess)
-                {
+            
 
-                    return View();
-                }
+
+            var res = _menuService.Insert(newMenuDto);
+            if (res.IsSuccess)
+            {
+
                 return View();
             }
             return View();

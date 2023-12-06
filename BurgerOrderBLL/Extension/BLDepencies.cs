@@ -23,7 +23,6 @@ namespace BurgerOrderBLL.Extension
             service.AddScoped<IExtrasService, ExtrasManager>();
             service.AddScoped<IMenuService, MenuManager>();
             service.AddScoped<IOrderService, OrderManager>();
-            service.AddScoped<ISubstanceService, SubstanceManager>();
 
 
 

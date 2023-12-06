@@ -13,17 +13,22 @@ namespace BurgerOrderEntity.Concrete
         public Menu()
         {
             Id=Guid.NewGuid().ToString();
-            Substances = new List<Substance>();
         }
         public string Description { get; set; }
         public int PriceForMedium { get; set; }
+        public bool Domates { get; set; }
+        public bool Marul { get; set; }
+        public bool Sogan { get; set; }
+        public bool Tursu { get; set; }
+        public bool Mayonez { get; set; }
+        public bool Ketcap { get; set; }
+
 
         //Navigation Props
         public List<Order> Orders { get; set; }
         public List<Extras> Extras { get; set; }
 
 
-        public List<Substance> Substances { get; set; }
 
     }
 }

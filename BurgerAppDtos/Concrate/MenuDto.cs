@@ -15,7 +15,12 @@ namespace BurgerAppDtos.Concrate
         public DateTime Created { get; set; }
         public string Description { get; set; }
         public int PriceForMedium { get; set; }
-        public string SubstanceID { get; set; }
+        public bool Domates { get; set; }
+        public bool Marul { get; set; }
+        public bool Sogan { get; set; }
+        public bool Tursu { get; set; }
+        public bool Mayonez { get; set; }
+        public bool Ketcap { get; set; }
 
     }
 }

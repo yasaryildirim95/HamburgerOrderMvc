@@ -20,6 +20,12 @@ namespace BurgerOrderEntity.Concrete
         public ProductSize ProductSize { get; set; }
         public string ProductSizeId { get; set; }
         public int Amount { get; set; }
+        public bool Domates { get; set; }
+        public bool Marul { get; set; }
+        public bool Sogan { get; set; }
+        public bool Tursu { get; set; }
+        public bool Mayonez { get; set; }
+        public bool Ketcap { get; set; }
 
         //Navigation Props
         public AppUser AppUser { get; set; }

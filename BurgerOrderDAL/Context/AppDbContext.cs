@@ -15,7 +15,6 @@ namespace BurgerOrderDAL.Context
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Substance> Substances { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -33,6 +32,8 @@ namespace BurgerOrderDAL.Context
                     Name = "Whooper",
                     Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
                     PriceForMedium = 100,
+                    Domates = true,
+                    Marul = true
                     
                 });
 
@@ -45,7 +46,8 @@ namespace BurgerOrderDAL.Context
                     Name = "BigKing",
                     Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
                     PriceForMedium = 120,
-                    
+                    Tursu = true,
+                    Domates = true
                 });
 
                 
@@ -57,7 +59,8 @@ namespace BurgerOrderDAL.Context
                     Name = "ChikenRoyal",
                     Description = "Mikrodalgada tavuk burger",
                     PriceForMedium = 60,
-                    
+                    Sogan = true,
+                    Domates = true
                 });
 
            
@@ -77,8 +80,6 @@ namespace BurgerOrderDAL.Context
             mb.Entity<Extras>()
                 .HasData(new Extras { Id = "1", Name = "Ranch Sos", Price = 10 });
 
-
-            mb.Entity<Substance>().HasOne(s => s.Menu).WithMany(s => s.Substances).HasForeignKey(x => x.MenuId);
 
             base.OnModelCreating(mb);
         }
