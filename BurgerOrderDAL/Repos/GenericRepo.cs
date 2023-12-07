@@ -39,8 +39,9 @@ namespace BurgerOrderDAL.Repos
         public T? Get(object id)
         {
             return _dbSet.Find(id);
+        
         }
-
+      
         public T? Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
         {
             return _dbSet.Where(filter).FirstOrDefault();

@@ -40,7 +40,7 @@ namespace BurgerOrderBLL.Manager
             }
         }
 
-        public Response<TDto> Get(int id)
+        public Response<TDto> Get(string id)
         {
             try
             {
