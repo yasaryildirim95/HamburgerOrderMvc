@@ -11,6 +11,6 @@ namespace BurgerOrderBLL.Service.Contrate
 {
     public interface IOrderService : IService<Order, OrderDto>
     {
-        Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extras> extras, Order order, ProductSize size);
+        Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extra> extras, Order order, ProductSize size);
     }
 }

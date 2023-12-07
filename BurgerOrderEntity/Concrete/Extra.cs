@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderEntity.Concrete
 {
-    public class Extras : BaseEntity
+    public class Extra : BaseEntity
     {
-        public Extras()
+        public Extra()
         {
             Id = Guid.NewGuid().ToString();
         }
+        
         public int Price { get; set; }
 
     }

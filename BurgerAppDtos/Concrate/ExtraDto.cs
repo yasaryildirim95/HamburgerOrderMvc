@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BurgerAppDtos.Concrate
 {
-    public class ExtrasDto : IDTO
+    public class ExtraDto : IDTO
     {
         public string Id { get; set; }
 

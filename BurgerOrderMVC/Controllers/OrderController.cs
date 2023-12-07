@@ -7,11 +7,11 @@ namespace BurgerOrderMVC.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IExtrasService extrasService;
+        private readonly IExtraService extrasService;
         private readonly IMenuService menuService;
         private readonly IOrderService orderService;
 
-        public OrderController(IExtrasService extrasService, IMenuService menuService, IOrderService orderService)
+        public OrderController(IExtraService extrasService, IMenuService menuService, IOrderService orderService)
         {
             this.extrasService = extrasService;
             this.menuService = menuService;

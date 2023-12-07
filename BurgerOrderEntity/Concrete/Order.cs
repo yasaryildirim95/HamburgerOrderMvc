@@ -2,6 +2,7 @@
 using BurgerOrderEntity.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace BurgerOrderEntity.Concrete
     {
         public Order()
         {
-            Extras = new();
+            Id = Guid.NewGuid().ToString();
         }
         public string Adress { get; set; }
         public decimal TotalPrice { get; set; }
@@ -34,8 +35,8 @@ namespace BurgerOrderEntity.Concrete
 
         public Menu Menu { get; set; }
         public string MenuId { get; set; }
-
-        public List<Extras> Extras { get; set; }
+        [NotMapped]
+        public List<string> Extras { get; set; } = new List<string>();
 
     }
 }

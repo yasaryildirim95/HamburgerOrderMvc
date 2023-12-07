@@ -26,7 +26,6 @@ namespace BurgerOrderEntity.Concrete
 
         //Navigation Props
         public List<Order> Orders { get; set; }
-        public List<Extras> Extras { get; set; }
 
 
 

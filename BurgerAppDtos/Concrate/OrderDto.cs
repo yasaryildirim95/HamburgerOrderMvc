@@ -26,6 +26,6 @@ namespace BurgerAppDtos.Concrate
         public bool Ketcap { get; set; }
         public string MenuId { get; set; }
 
-        public List<Extras> Extras { get; set; }
+        public List<string> Extras { get; set; }
     }
 }

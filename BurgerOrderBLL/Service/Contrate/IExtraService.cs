@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Service.Contrate
 {
-    public interface IExtrasService : IService<Extras, ExtrasDto>
+    public interface IExtraService : IService<Extra, ExtraDto>
     {
 
     }

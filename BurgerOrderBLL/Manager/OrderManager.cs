@@ -23,7 +23,7 @@ namespace BurgerOrderBLL.Manager
        
 
 
-        public async Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extras>extras, Order order,ProductSize size) 
+        public async Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extra>extras, Order order,ProductSize size) 
         {
             int menuPrice = selectedMenu.PriceForMedium;
             

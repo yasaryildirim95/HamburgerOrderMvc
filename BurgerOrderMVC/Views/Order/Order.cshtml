@@ -23,7 +23,7 @@
 
 			<img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
 			<div>
-				<input id="desc" disabled />
+				<input type="text" id="desc" disabled />
 
 			</div>
 			<div class="pt-3">
@@ -75,10 +75,10 @@
 		</div>
 		<input type="hidden" asp-for="Extras" id="extralar" />
 		<div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
-			@foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
+			@foreach (var item in (List<ExtraDto>)ViewBag.Extras)
 			{
 				<div>
-					<input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extra" value="Json.Serialize(item)" />
+					<input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extras" value="@item.Name" />
 					<label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
 				</div>
 			}
@@ -94,16 +94,16 @@
 
 <script>
 
-	function submitForm() {
+	// function submitForm() {
 
-		var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
+	// 	var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
 
-		var selectedItems = Array.from(checkboxes).map(function (checkbox) {
-			return checkbox.value;
-		});
-		console.log(selectedItems);
-		document.getElementById("extralar").value = JSON.parse(selectedItems);
-	}
+	// 	var selectedItems = Array.from(checkboxes).map(function (checkbox) {
+	// 		return checkbox.value;
+	// 	});
+	// 	console.log(selectedItems);
+	// 	document.getElementById("extralar").value = selectedItems;
+	// }
 
 	function updateCheckboxes() {
 		// Get the selected menu from the dropdown

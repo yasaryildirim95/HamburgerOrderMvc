@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Manager
 {
-    public class ExtrasManager : BaseManager<Extras,ExtrasDto>, IExtrasService
+    public class ExtraManager : BaseManager<Extra,ExtraDto>, IExtraService
     {
-        public ExtrasManager(IMapper mapper, IUow uow) : base(mapper, uow)
+        public ExtraManager(IMapper mapper, IUow uow) : base(mapper, uow)
         {
             
         }

@@ -77,14 +77,16 @@ namespace BurgerOrderDAL.Context
             mb.Entity<ProductSize>()
                 .HasData(new ProductSize { Id = "4", Name = "Mega", PriceMultiplier = (decimal)1.5 });
 
-            mb.Entity<Extras>()
-                .HasData(new Extras { Id = "1", Name = "Ranch Sos", Price = 10 });
+            mb.Entity<Extra>()
+                .HasData(new Extra { Id = "1", Name = "Ranch Sos", Price = 10 });
 
-            mb.Entity<Extras>()
-                .HasData(new Extras { Id = "2", Name = "Barbekü Sos", Price = 10 });
+            mb.Entity<Extra>()
+                .HasData(new Extra { Id = "2", Name = "Barbekü Sos", Price = 10 });
 
-            mb.Entity<Extras>()
-                .HasData(new Extras { Id = "3", Name = "Ballı Hardal Sos", Price = 10 });
+            mb.Entity<Extra>()
+                .HasData(new Extra { Id = "3", Name = "Ballı Hardal Sos", Price = 10 });
+
+            mb.Entity <Extra>().HasIndex(x => x.Name).IsUnique();
 
             base.OnModelCreating(mb);
         }
