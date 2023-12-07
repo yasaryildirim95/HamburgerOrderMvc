@@ -80,6 +80,11 @@ namespace BurgerOrderDAL.Context
             mb.Entity<Extras>()
                 .HasData(new Extras { Id = "1", Name = "Ranch Sos", Price = 10 });
 
+            mb.Entity<Extras>()
+                .HasData(new Extras { Id = "2", Name = "Barbekü Sos", Price = 10 });
+
+            mb.Entity<Extras>()
+                .HasData(new Extras { Id = "3", Name = "Ballı Hardal Sos", Price = 10 });
 
             base.OnModelCreating(mb);
         }
