@@ -15,6 +15,7 @@ namespace BurgerOrderBLL.Manager
 {
     public class OrderManager : BaseManager<Order, OrderDto>, IOrderService
     {
+        private readonly IExtraService _extra;
         public OrderManager(IMapper mapper,IUow uow) : base(mapper, uow) 
         {
         
@@ -23,21 +24,36 @@ namespace BurgerOrderBLL.Manager
        
 
 
-        public async Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<Extra>extras, Order order,ProductSize size) 
+        public async Task<decimal> CalculateOrderPrice(Menu selectedMenu, List<string> extras, Order order,ProductSize size) 
         {
             int menuPrice = selectedMenu.PriceForMedium;
             
             int amount = order.Amount;
             decimal productSize = size.PriceMultiplier;
-            int selectedExtra = extras.Sum(extra => extra.Price);
+            int selectedExtraTotal = 0;
+            foreach (var item in extras)
+            {
+                if (item != null)
+                {
+                    var extra =  _extra.Get(item);
+                  
+                    var selectedExtra = extra.Context.Price;
+
+                    selectedExtraTotal += selectedExtra;
+                }
+                
+            }
+           
 
 
 
 
-            order.TotalPrice = (((menuPrice * productSize) +selectedExtra ) * amount);
+            order.TotalPrice = (((menuPrice * productSize) +selectedExtraTotal) * amount);
 
             return order.TotalPrice;
 
         }
+
+        
     }
 }

@@ -15,7 +15,7 @@ namespace BurgerOrderBLL.Service.Base
         Response Insert(TDto dto);
         Response Update(TDto dto);
         Response Delete(TDto dto);
-        Response<TDto> Get(int id);
+        Response<TDto> Get(string id);
         Response<IEnumerable<TDto>> GetAll();
     }
 }
