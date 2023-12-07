@@ -22,15 +22,19 @@
             <label class="pb-3" for="pickMenu">Menü</label>
 
             <img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
+            <div>
+                <input id="desc" disabled />
 
+            </div>
             <div class="pt-3">
-                <select class="form-select-lg" id="pickMenu" style="width:350px" asp-for="MenuId" onchange="updateCheckboxes()">
+                <input type="hidden" asp-for="MenuId" id="menuId" name="menuId"/>
+
+                <select class="form-select-lg" id="pickMenu" style="width:350px" onchange="updateCheckboxes()">
                     @foreach (var item in (List<MenuDto>)ViewBag.Menus)
                     {
                         <option value="@Json.Serialize(item)">@item.Name</option>
                     }
                 </select>
-
                 <select id="menuSize" class="form-select-lg float-end" style="width:150px" asp-for="ProductSizeId">
                     <option value="1">Küçük</option>
                     <option value="2">Orta</option>
@@ -69,28 +73,38 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" asp-for="Extras" id="extralar"/>
         <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
             @foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
             {
                 <div>
-                    <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="itemGroup" value="@item" />
+                    <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extra" value="Json.Serialize(item)" />
                     <label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
                 </div>
             }
             <div class="mt-auto ms-auto">
-                <input type="submit" value="Sepete Ekle" class="btn btn-primary" />
+                <input type="submit" value="Sepete Ekle" class="btn btn-primary" onclick="submitForm()" />
             </div>
         </div>
     </div>
-
-
 </form>
 
 
 
 
 <script>
+
+    function submitForm() {
+        
+        var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
+        
+        var selectedItems = Array.from(checkboxes).map(function (checkbox) {
+            return checkbox.value;
+        });
+        console.log(selectedItems);
+    document.getElementById("extralar").value = JSON.parse(selectedItems);
+    }
+
     function updateCheckboxes() {
         // Get the selected menu from the dropdown
         var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
@@ -104,10 +118,12 @@
             checkbox.checked = false;
         });
 
-        var menuId = selectedMenu.menuId;
-
+        var menuId = selectedMenu.id;
+        var desc = selectedMenu.description;
+        console.log(desc);
         // Set the MenuId in the form
-        document.getElementById("menuSize").value = menuId;
+        document.getElementById("menuId").value = menuId;
+        document.getElementById("desc").value = desc;
 
         // Check the checkboxes corresponding to the selected menu
         if (selectedMenu.marul) {
