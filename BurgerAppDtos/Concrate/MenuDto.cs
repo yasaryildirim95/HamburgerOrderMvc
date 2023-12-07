@@ -2,6 +2,7 @@
 using BurgerOrderEntity.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,13 @@ namespace BurgerAppDtos.Concrate
 {
     public class MenuDto : IDTO
     {
+        [Required,StringLength(50,MinimumLength =5)]
         public string Name { get; set; }
         public DataStatus DataStatusEnum { get; set; }
         public DateTime Created { get; set; }
+        [Required,StringLength(75,MinimumLength =5)]
         public string Description { get; set; }
+        [Required,Range(10,500)]
         public int PriceForMedium { get; set; }
         public bool Domates { get; set; }
         public bool Marul { get; set; }

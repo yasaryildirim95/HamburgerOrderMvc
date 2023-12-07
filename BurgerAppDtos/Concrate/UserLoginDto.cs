@@ -10,7 +10,7 @@ namespace BurgerAppDtos.Concrate
 {
     public class UserLoginDto : IDTO
     {
-        [Required]
+        [Required,EmailAddress]
         public string Email { get; set; }
 
         [Required]

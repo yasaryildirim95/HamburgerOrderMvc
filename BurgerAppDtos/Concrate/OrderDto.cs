@@ -2,6 +2,7 @@
 using BurgerOrderEntity.Concrete;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,12 @@ namespace BurgerAppDtos.Concrate
 {
     public class OrderDto :IDTO
     {
+        [Required,StringLength(100,MinimumLength =5)]
         public string Adress { get; set; }
+        [Required]
         public decimal TotalPrice { get; set; }
         public string ProductSizeId { get; set; }
+        [Required,Range(1,20)]
         public int Amount { get; set; }
         public bool Domates { get; set; }
         public bool Marul { get; set; }
