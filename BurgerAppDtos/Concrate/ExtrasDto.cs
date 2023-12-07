@@ -10,8 +10,10 @@ namespace BurgerAppDtos.Concrate
 {
     public class ExtrasDto : IDTO
     {
-        [Required,StringLength(45,MinimumLength =5)] 
+        public string Id { get; set; }
 
+
+        [Required,StringLength(45,MinimumLength =5)] 
         public string Name { get; set; }
         [Required,Range(1,100)]
         public int Price { get; set; }
