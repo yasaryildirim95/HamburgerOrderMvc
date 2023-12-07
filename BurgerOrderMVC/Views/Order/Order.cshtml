@@ -5,88 +5,88 @@
 
 @if (ViewBag.Menus == null)
 {
-    <p>Lütfen menü oluşturun!</p>
-    return;
+	<p>Lütfen menü oluşturun!</p>
+	return;
 }
 @if (ViewBag.Extras == null)
 {
-    <p>Lütfen ekstralar ekleyin!</p>
-    return;
+	<p>Lütfen ekstralar ekleyin!</p>
+	return;
 }
 
 
 <title>Sipariş Ver</title>
 <form method="post" asp-action="Order">
-    <div class="row">
-        <div class="border border rounded col-md-7 p-3 me-2 ">
-            <label class="pb-3" for="pickMenu">Menü</label>
+	<div class="row">
+		<div class="border border rounded col-md-7 p-3 me-2 ">
+			<label class="pb-3" for="pickMenu">Menü</label>
 
-            <img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
-            <div>
-                <input id="desc" disabled />
+			<img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
+			<div>
+				<input id="desc" disabled />
 
-            </div>
-            <div class="pt-3">
-                <input type="hidden" asp-for="MenuId" id="menuId" name="menuId"/>
+			</div>
+			<div class="pt-3">
+				<input type="hidden" asp-for="MenuId" id="menuId" name="menuId" />
 
-                <select class="form-select-lg" id="pickMenu" style="width:350px" onchange="updateCheckboxes()">
-                    @foreach (var item in (List<MenuDto>)ViewBag.Menus)
-                    {
-                        <option value="@Json.Serialize(item)">@item.Name</option>
-                    }
-                </select>
-                <select id="menuSize" class="form-select-lg float-end" style="width:150px" asp-for="ProductSizeId">
-                    <option value="1">Küçük</option>
-                    <option value="2">Orta</option>
-                    <option value="3">Büyük</option>
-                    <option value="4">Mega</option>
-                </select>
-                <div>
-                    <div class="row justify-content-around mt-3">
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Marul" asp-for="Marul" />
-                            <label for="Marul" class="h3">Marul</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Tursu" asp-for="Tursu" />
-                            <label for="Tursu" class="h3">Turşu</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Ketcap" asp-for="Ketcap" />
-                            <label for="Ketcap" class="h3">Ketcap</label>
-                        </div>
-                    </div>
-                    <div class="row justify-content-around">
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Mayonez" asp-for="Mayonez" />
-                            <label for="Mayonez" class="h3">Mayonez</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Sogan" asp-for="Sogan" />
-                            <label for="Sogan" class="h3">Soğan</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="checkbox" class="btn-primary me-2" id="Domates" asp-for="Domates" />
-                            <label for="Domates" class="h3">Domates</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <input type="hidden" asp-for="Extras" id="extralar"/>
-        <div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
-            @foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
-            {
-                <div>
-                    <input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extra" value="Json.Serialize(item)" />
-                    <label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
-                </div>
-            }
-            <div class="mt-auto ms-auto">
-                <input type="submit" value="Sepete Ekle" class="btn btn-primary" onclick="submitForm()" />
-            </div>
-        </div>
-    </div>
+				<select class="form-select-lg" id="pickMenu" style="width:350px" onchange="updateCheckboxes()">
+					@foreach (var item in (List<MenuDto>)ViewBag.Menus)
+					{
+						<option value="@Json.Serialize(item)">@item.Name</option>
+					}
+				</select>
+				<select id="menuSize" class="form-select-lg float-end" style="width:150px" asp-for="ProductSizeId">
+					<option value="1">Küçük</option>
+					<option value="2">Orta</option>
+					<option value="3">Büyük</option>
+					<option value="4">Mega</option>
+				</select>
+				<div>
+					<div class="row justify-content-around mt-3">
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Marul" asp-for="Marul" />
+							<label for="Marul" class="h3">Marul</label>
+						</div>
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Tursu" asp-for="Tursu" />
+							<label for="Tursu" class="h3">Turşu</label>
+						</div>
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Ketcap" asp-for="Ketcap" />
+							<label for="Ketcap" class="h3">Ketcap</label>
+						</div>
+					</div>
+					<div class="row justify-content-around">
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Mayonez" asp-for="Mayonez" />
+							<label for="Mayonez" class="h3">Mayonez</label>
+						</div>
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Sogan" asp-for="Sogan" />
+							<label for="Sogan" class="h3">Soğan</label>
+						</div>
+						<div class="col-md-3">
+							<input type="checkbox" class="btn-primary me-2" id="Domates" asp-for="Domates" />
+							<label for="Domates" class="h3">Domates</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" asp-for="Extras" id="extralar" />
+		<div class="border border-1 rounded col-md-4 p-3 d-flex flex-column">
+			@foreach (var item in (List<ExtrasDto>)ViewBag.Extras)
+			{
+				<div>
+					<input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extra" value="Json.Serialize(item)" />
+					<label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
+				</div>
+			}
+			<div class="mt-auto ms-auto">
+				<input type="submit" value="Sepete Ekle" class="btn btn-primary" onclick="submitForm()" />
+			</div>
+		</div>
+	</div>
 </form>
 
 
@@ -94,61 +94,71 @@
 
 <script>
 
-    function submitForm() {
-        
-        var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
-        
-        var selectedItems = Array.from(checkboxes).map(function (checkbox) {
-            return checkbox.value;
-        });
-        console.log(selectedItems);
-    document.getElementById("extralar").value = JSON.parse(selectedItems);
-    }
+	function submitForm() {
 
-    function updateCheckboxes() {
-        // Get the selected menu from the dropdown
-        var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
-        var selectedMenu = JSON.parse(selectedOption.value);
+		var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
 
-        // Get all checkboxes
-        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		var selectedItems = Array.from(checkboxes).map(function (checkbox) {
+			return checkbox.value;
+		});
+		console.log(selectedItems);
+		document.getElementById("extralar").value = JSON.parse(selectedItems);
+	}
 
-        // Uncheck all checkboxes
-        checkboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-        });
+	function updateCheckboxes() {
+		// Get the selected menu from the dropdown
+		var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
+		var selectedMenu = JSON.parse(selectedOption.value);
 
-        var menuId = selectedMenu.id;
-        var desc = selectedMenu.description;
-        console.log(desc);
-        // Set the MenuId in the form
-        document.getElementById("menuId").value = menuId;
-        document.getElementById("desc").value = desc;
+		// Get all checkboxes
+		var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-        // Check the checkboxes corresponding to the selected menu
-        if (selectedMenu.marul) {
-            document.getElementById("Marul").checked = true;
-        }
-        if (selectedMenu.tursu) {
-            document.getElementById("Tursu").checked = true;
-        }
-        if (selectedMenu.ketcap) {
-            document.getElementById("Ketcap").checked = true;
-        }
-        if (selectedMenu.mayonez) {
-            document.getElementById("Mayonez").checked = true;
-        }
-        if (selectedMenu.sogan) {
-            document.getElementById("Sogan").checked = true;
-        }
-        if (selectedMenu.domates) {
-            document.getElementById("Domates").checked = true;
-        }
-    }
+		// Uncheck all checkboxes
+		checkboxes.forEach(function (checkbox) {
+			checkbox.checked = false;
+		});
 
-    window.onload = function () {
-        var selectElement = document.getElementById("pickMenu");
-        updateCheckboxes(selectElement);
-    };
+		var menuId = selectedMenu.id;
+		var desc = selectedMenu.description;
+		console.log(desc);
+		// Set the MenuId in the form
+		document.getElementById("menuId").value = menuId;
+		document.getElementById("desc").value = desc;
+
+		// Check the checkboxes corresponding to the selected menu
+		if (selectedMenu.marul) {
+			document.getElementById("Marul").checked = true;
+		}
+		if (selectedMenu.tursu) {
+			document.getElementById("Tursu").checked = true;
+		}
+		if (selectedMenu.ketcap) {
+			document.getElementById("Ketcap").checked = true;
+		}
+		if (selectedMenu.mayonez) {
+			document.getElementById("Mayonez").checked = true;
+		}
+		if (selectedMenu.sogan) {
+			document.getElementById("Sogan").checked = true;
+		}
+		if (selectedMenu.domates) {
+			document.getElementById("Domates").checked = true;
+		}
+	}
+
+	window.onload = function () {
+		var selectElement = document.getElementById("pickMenu");
+		updateCheckboxes(selectElement);
+	};
 
 </script>
+
+
+@section Scripts
+{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+}
