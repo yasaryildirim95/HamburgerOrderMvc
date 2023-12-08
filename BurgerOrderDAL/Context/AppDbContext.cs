@@ -1,5 +1,6 @@
 ﻿using BurgerAppDtos.Concrate;
 using BurgerOrderEntity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -24,7 +25,40 @@ namespace BurgerOrderDAL.Context
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            
+
+            //AppUser and AppRole Seed Datas
+
+            var hasher = new PasswordHasher<AppUser>();
+            var AdminId = Guid.NewGuid().ToString();
+            var adminRoleID = Guid.NewGuid().ToString();
+            var userRoleID = Guid.NewGuid().ToString();
+
+            mb.Entity<AppRole>().HasData(
+                new AppRole { Id = userRoleID, Name = "User" }
+            , new AppRole { Id = adminRoleID, Name = "Admin" });
+
+            mb.Entity<AppUser>()
+                .HasData(new AppUser
+                {
+                    Id = "1",
+                    UserName = "Admin",
+                    Name = "Admin",
+                    SurName = "Admin",
+                    Email = "admin@hotmail.com",
+                    PasswordHash = hasher.HashPassword(null, "Admin"),
+
+                });
+
+            mb.Entity<IdentityUserRole<string>>()
+                .HasData(new IdentityUserRole<string>
+                {
+                    UserId = AdminId,
+                    RoleId = adminRoleID
+                });
+
+
+            //Menu and Extras Seed Datas
+
             mb.Entity<Menu>()
                 .HasData(new Menu
                 {
