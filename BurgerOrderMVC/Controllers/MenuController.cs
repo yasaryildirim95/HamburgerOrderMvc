@@ -36,14 +36,13 @@ namespace BurgerOrderMVC.Controllers
         [HttpPost]
         public IActionResult Create(MenuDto newMenuDto) 
         {
-            
-
+            newMenuDto.Id = Guid.NewGuid().ToString();
 
             var res = _menuService.Insert(newMenuDto);
             if (res.IsSuccess)
             {
 
-                return View();
+                return RedirectToAction("List");
             }
             return View();
             
@@ -56,15 +55,23 @@ namespace BurgerOrderMVC.Controllers
 
         }
 
-
-        [HttpPost]
-        public IActionResult Edit(MenuDto DeletedMenuDto)
+        [HttpGet]
+        public IActionResult Edit(string Id)
         {
-
-            var EditAction = _menuService.Update(DeletedMenuDto);
+            var getMenuAction = _menuService.Get(Id);
+            if (getMenuAction.IsSuccess)
+            {
+                return View(getMenuAction.Context);
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Edit(MenuDto UpdatedDto)
+        {
+            var EditAction = _menuService.Update(UpdatedDto);
             if (EditAction.IsSuccess)
             {
-                return View();
+                return RedirectToAction("List");
             }
             return View();
         }
@@ -75,7 +82,7 @@ namespace BurgerOrderMVC.Controllers
             var DeleteAction = _menuService.Delete(DeletedMenuDto);
             if (DeleteAction.IsSuccess)
             {
-                return View();
+                return RedirectToAction("List");
             }
             return View();
         }

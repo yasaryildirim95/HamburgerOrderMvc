@@ -1,0 +1,63 @@
+﻿@using BurgerAppDtos.Concrate
+
+<h1>Edit Menu</h1>
+
+
+@model MenuDto
+
+<form method="post" asp-action="Edit">
+    <input asp-for="Id" value="@Model.Id" hidden/>
+    <div>
+        <label asp-for="Name">Menu Name:</label>
+        <input type="text" name="Name" id="Name" class="form-control" value="@Model.Name"/>
+    </div>
+    <div>
+        <label asp-for="Description">Menu Description:</label>
+        <input type="text" name="Description" id="Description" class="form-control" value="@Model.Description"/>
+    </div>
+    <div>
+        <label asp-for="PriceForMedium">Menu Price for Medium Size:</label>
+        <input type="number" name="PriceForMedium" id="PriceForMedium" class="form-control" value="@Model.PriceForMedium"/>
+    </div>
+
+    <div>
+        <div class="row justify-content-around mt-3">
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Marul" asp-for="Marul" />
+                <label for="Marul" class="h3">Marul</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Tursu" asp-for="Tursu" />
+                <label for="Tursu" class="h3">Turşu</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Ketcap" asp-for="Ketcap" />
+                <label for="Ketcap" class="h3">Ketcap</label>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Mayonez" asp-for="Mayonez" />
+                <label for="Mayonez" class="h3">Mayonez</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Sogan" asp-for="Sogan" />
+                <label for="Sogan" class="h3">Soğan</label>
+            </div>
+            <div class="col-md-3">
+                <input type="checkbox" class="btn-primary me-2" id="Domates" asp-for="Domates" />
+                <label for="Domates" class="h3">Domates</label>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Menu Düzenle" />
+</form>
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+}
