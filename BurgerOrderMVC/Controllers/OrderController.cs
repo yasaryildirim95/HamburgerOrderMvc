@@ -90,7 +90,10 @@ namespace BurgerOrderMVC.Controllers
 		[HttpGet]
 		public IActionResult OrderEdit(string id) 
 		{
-            var getOrderAction = orderService.Get(id);
+			ViewBag.Extras = extrasService.GetAll().Context;
+			ViewBag.Menus = menuService.GetAll().Context;
+
+			var getOrderAction = orderService.Get(id);
             if (getOrderAction.IsSuccess)
             {
                 return View(getOrderAction.Context);
