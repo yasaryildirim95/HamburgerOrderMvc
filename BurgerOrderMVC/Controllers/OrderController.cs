@@ -46,7 +46,10 @@ namespace BurgerOrderMVC.Controllers
 		public IActionResult Order(OrderDto orderDTO)
 		{
 			var res = orderService.Insert(orderDTO);
-
+			if (res.IsSuccess)
+			{
+				return RedirectToAction("List");
+			}
 			return View();
 		}
 
