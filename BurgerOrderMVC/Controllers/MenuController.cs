@@ -18,6 +18,7 @@ namespace BurgerOrderMVC.Controllers
         {
             _menuService = menuService;
         }
+        [Authorize(Roles = "Admin")] 
 
         [HttpGet]
         public IActionResult Create()
@@ -30,13 +31,13 @@ namespace BurgerOrderMVC.Controllers
         public IActionResult Create(MenuDto newMenuDto)
         {
             newMenuDto.Id = Guid.NewGuid().ToString();
-            // Check if an image file is provided
+            
             if (newMenuDto.ImageFile != null && newMenuDto.ImageFile.Length > 0)
             {
-                // Save the image file to the server
+                
                 var imageUrl = SaveImageFile(newMenuDto.ImageFile);
 
-                // Set the ImagePath property in MenuDto
+               
                 newMenuDto.ImageURL = imageUrl;
             }
             var res = _menuService.Insert(newMenuDto);
@@ -50,23 +51,24 @@ namespace BurgerOrderMVC.Controllers
 
         private string SaveImageFile(IFormFile imageFile)
         {
-            // Generate a unique file name (you may want to use a more robust method)
+            
             var fileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
 
-            // Specify the folder where you want to save the image files
+            
             var imagePath = Path.Combine("wwwroot", "images", fileName);
 
-            // Save the image file to the specified path
+            
             using (var stream = new FileStream(imagePath, FileMode.Create))
             {
                 imageFile.CopyTo(stream);
             }
 
-            // Return the path to be stored in the database
+            
             return "/images/" + fileName;
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(string Id)
         {
@@ -87,7 +89,7 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(MenuDto DeletedMenuDto)
         {

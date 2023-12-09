@@ -1,5 +1,6 @@
 ﻿using BurgerAppDtos.Concrate;
 using BurgerOrderBLL.Service.Contrate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerOrderMVC.Controllers
@@ -12,6 +13,7 @@ namespace BurgerOrderMVC.Controllers
         {
             _extraService = extraService;
         }
+        [Authorize(Roles ="Admin")]
 
         [HttpGet]
         public IActionResult Create()
@@ -34,6 +36,7 @@ namespace BurgerOrderMVC.Controllers
             return View();
             
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult Edit(string Id)
@@ -55,6 +58,7 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult Delete(ExtraDto deletedExtraDto)
