@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Service.Contrate
 {
-    internal interface IProductSizeService : IService<ProductSize, ProductSizeDto>
+    public interface IProductSizeService : IService<ProductSize, ProductSizeDto>
     {
     }
 }

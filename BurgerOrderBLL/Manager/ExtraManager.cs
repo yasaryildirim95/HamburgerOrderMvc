@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BurgerAppDtos.Base;
 using BurgerAppDtos.Concrate;
+using BurgerOrderBLL.ReuqestResponse;
 using BurgerOrderBLL.Service.Contrate;
 using BurgerOrderDAL.Abstract;
 using BurgerOrderEntity.Concrete;
@@ -11,11 +13,13 @@ using System.Threading.Tasks;
 
 namespace BurgerOrderBLL.Manager
 {
-    public class ExtraManager : BaseManager<Extra,ExtraDto>, IExtraService
-    {
-        public ExtraManager(IMapper mapper, IUow uow) : base(mapper, uow)
-        {
-            
-        }
-    }
+	public class ExtraManager : BaseManager<Extra,ExtraDto>, IExtraService
+	{
+		public ExtraManager(IMapper mapper, IUow uow) : base(mapper, uow)
+		{
+			
+		}
+
+
+	}
 }

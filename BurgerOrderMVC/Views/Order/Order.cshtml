@@ -16,7 +16,7 @@
 
 
 <title>Sipariş Ver</title>
-<form method="post" asp-action="Order">
+<form method="post" asp-action="Order" onchange="calcprice()">
 	<div class="row">
 		<div class="border border rounded col-md-7 p-3 me-2 ">
 			<label class="pb-3" for="pickMenu">Menü</label>
@@ -44,29 +44,29 @@
 				<div>
 					<div class="row justify-content-around mt-3">
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Marul" asp-for="Marul" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Marul" asp-for="Marul" />
 							<label for="Marul" class="h3">Marul</label>
 						</div>
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Tursu" asp-for="Tursu" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Tursu" asp-for="Tursu" />
 							<label for="Tursu" class="h3">Turşu</label>
 						</div>
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Ketcap" asp-for="Ketcap" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Ketcap" asp-for="Ketcap" />
 							<label for="Ketcap" class="h3">Ketcap</label>
 						</div>
 					</div>
 					<div class="row justify-content-around">
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Mayonez" asp-for="Mayonez" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Mayonez" asp-for="Mayonez" />
 							<label for="Mayonez" class="h3">Mayonez</label>
 						</div>
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Sogan" asp-for="Sogan" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Sogan" asp-for="Sogan" />
 							<label for="Sogan" class="h3">Soğan</label>
 						</div>
 						<div class="col-md-3">
-							<input type="checkbox" class="btn-primary me-2" id="Domates" asp-for="Domates" />
+							<input type="checkbox" class="btn-primary me-2" name="substance" id="Domates" asp-for="Domates" />
 							<label for="Domates" class="h3">Domates</label>
 						</div>
 					</div>
@@ -78,40 +78,41 @@
 			@foreach (var item in (List<ExtraDto>)ViewBag.Extras)
 			{
 				<div>
-					<input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extras" value="@item.Name" />
+					<input type="checkbox" id="rb_@item.Name.Replace(" ", "_")" name="Extras" data-item="@item.Name" value="@item.Id" onchange="" />
 					<label for="rb_@item.Name.Replace(" ", "_")">@item.Name</label>
 				</div>
 			}
+			<div class="mt-auto">
+				
+			</div>
+			
 			<div class="mt-auto ms-auto">
+				<label id="totalprice" class="me-5">0 TL</label>
+				<label for="amount">Adet:</label>
+				<input type="number" asp-for="Amount" id="amount" min="1" style="width: 50px"/>
 				<input type="submit" value="Sepete Ekle" class="btn btn-primary" onclick="submitForm()" />
 			</div>
 		</div>
 	</div>
 </form>
 
-
+<script>
+	// Set the initial value to 1 when the page loads
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('amount').value = 1;
+	});
+</script>
 
 
 <script>
-
-	// function submitForm() {
-
-	// 	var checkboxes = document.querySelectorAll('input[name="Extra"]:checked');
-
-	// 	var selectedItems = Array.from(checkboxes).map(function (checkbox) {
-	// 		return checkbox.value;
-	// 	});
-	// 	console.log(selectedItems);
-	// 	document.getElementById("extralar").value = selectedItems;
-	// }
-
+	
 	function updateCheckboxes() {
 		// Get the selected menu from the dropdown
 		var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
 		var selectedMenu = JSON.parse(selectedOption.value);
 
 		// Get all checkboxes
-		var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		var checkboxes = document.querySelectorAll('input[name="substance"]');
 
 		// Uncheck all checkboxes
 		checkboxes.forEach(function (checkbox) {
@@ -149,7 +150,75 @@
 	window.onload = function () {
 		var selectElement = document.getElementById("pickMenu");
 		updateCheckboxes(selectElement);
+
 	};
+
+	function calcprice() {
+
+		// Call your CalculateOrderPrice method with the selectedMenu, extras array, order, and productSize
+		// Assuming you have these variables defined somewhere in your code
+		var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
+		var selectedMenu = JSON.parse(selectedOption.value);
+		console.log(selectedMenu);
+
+		var amount = document.getElementById("amount").value;
+		console.log(amount);
+		var size = document.getElementById("menuSize").options[document.getElementById("menuSize").selectedIndex].value;
+		var size = size.replace(/^"|"$/g, '');
+		console.log(size);
+		// Retrieve all checked checkboxes
+		var checkedCheckboxes = document.querySelectorAll('input[name="Extras"]:checked');
+		// Create an array to store the selected extras
+		var selectedExtras = [];
+		checkedCheckboxes.forEach(function (checkbox) {
+			console.log(checkbox.value);
+			var c = checkbox.value;
+			var c = c.replace(/^"|"$/g, '');
+			selectedExtras.push(c);
+		});
+
+		console.log(selectedExtras)
+		// Call the CalculateOrderPrice method with the selected data
+		calculateOrderPrice(size, selectedMenu, selectedExtras, amount)
+			.then(function (totalPrice) {
+				// Handle the result if needed
+				console.log("New total price:", totalPrice);
+			})
+			.catch(function (error) {
+				// Handle errors if necessary
+				console.error("Error calculating order price:", error);
+			});
+	}
+
+	async function calculateOrderPrice(size, selectedMenu, extras, amount) {
+		try {
+
+			const formData = new FormData();
+			formData.append('SizeId', size);
+			formData.append('Menu', selectedMenu.id);
+			formData.append('Extras', extras);
+			formData.append('Amount', amount);
+
+			console.log(selectedMenu);
+			const response = await fetch('/order/calculatePrice', {
+				method: 'POST',
+				body: formData,
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			console.log('Total Price222:', data.result);
+			document.getElementById("totalprice").textContent = (data.result +' TL');
+			return data;
+
+			// ... rest of the code
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
 
 </script>
 
@@ -158,7 +227,5 @@
 {
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-
 
 }
