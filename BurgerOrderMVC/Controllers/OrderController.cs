@@ -109,6 +109,17 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult Delete(OrderDto deletedOrderDto)
+        {
+
+            var DeleteAction = orderService.Delete(deletedOrderDto);
+            if (DeleteAction.IsSuccess)
+            {
+                return RedirectToAction("List");
+            }
+            return View();
+        }
 
     }
 }
