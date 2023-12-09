@@ -12,6 +12,7 @@
                 <th> Fiyat </th>
                 <th> Adres</th>
                 <th> User </th>
+                <th>İşlemler</th>
                 
                
             </tr>
@@ -26,11 +27,11 @@
                     <td>@user.Name</td>
 
                     
-                    @* <td>
+                     <td>
                         <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id"> Düzenle</a>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"> Sil</a>
                     </td>
- *@
+ 
 
                 </tr>
             }

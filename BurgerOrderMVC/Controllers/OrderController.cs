@@ -88,7 +88,7 @@ namespace BurgerOrderMVC.Controllers
 
 		}
 		[HttpGet]
-		public IActionResult Edit(string id) 
+		public IActionResult OrderEdit(string id) 
 		{
             var getOrderAction = orderService.Get(id);
             if (getOrderAction.IsSuccess)
@@ -100,7 +100,7 @@ namespace BurgerOrderMVC.Controllers
 
         }
 		[HttpPost]
-        public IActionResult Edit(OrderDto updateOrderDto)
+        public IActionResult OrderEdit(OrderDto updateOrderDto)
         {
             var EditAction = orderService.Update(updateOrderDto);
             if (EditAction.IsSuccess)
