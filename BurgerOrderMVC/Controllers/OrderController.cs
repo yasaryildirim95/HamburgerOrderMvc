@@ -44,7 +44,7 @@ namespace BurgerOrderMVC.Controllers
 
 		[HttpPost]
 		public IActionResult Order(OrderDto orderDTO)
-			{
+		{
 			var res = orderService.Insert(orderDTO);
 
 			return View();
