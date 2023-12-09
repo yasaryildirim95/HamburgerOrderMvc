@@ -76,11 +76,9 @@
 						</div>
 					</div>
 					<div>
-						<label for="Adress">Adres</label>
+						<label for="Adress">Adres:</label>
 						<br>
-						<textarea asp-for="Adress" id="Adress" name="Adress" rows="4" cols="50">
-
-						   </textarea>
+						<textarea class="form-control" asp-for="Adress" id="Adress" name="Adress" rows="4" cols="100"></textarea>
 					</div>
 				</div>
 			</div>
@@ -98,8 +96,8 @@
 			</div>
 
 			<div class="mt-auto ms-auto">
-				<input type="number" asp-for="TotalPrice" id="TotalPrice" name="TotalPrice" readonly/>
-				<label>TL</label>
+				<input type="number" asp-for="TotalPrice" id="TotalPrice" name="TotalPrice" style="width: 80px" readonly />
+				<label class="me-5">TL</label>
 				<label for="amount">Adet:</label>
 				<input type="number" asp-for="Amount" id="amount" min="1" style="width: 50px" />
 				<input type="submit" value="Sepete Ekle" class="btn btn-primary" />
