@@ -38,7 +38,7 @@ namespace BurgerOrderMVC.Controllers
 			return View(data);
 		}
 
-		public IActionResult Order()
+		public IActionResult AddOrder()
 		{
 
 			ViewBag.Extras = extrasService.GetAll().Context;
@@ -49,7 +49,7 @@ namespace BurgerOrderMVC.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Order(OrderDto orderDTO)
+		public IActionResult AddOrder(OrderDto orderDTO)
 		{
 			orderDTO.AppUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
