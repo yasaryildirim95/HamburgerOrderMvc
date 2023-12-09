@@ -27,14 +27,14 @@ namespace BurgerOrderMVC.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(MenuDto newMenuDto, IFormFile ImageFile)
+        public IActionResult Create(MenuDto newMenuDto)
         {
             newMenuDto.Id = Guid.NewGuid().ToString();
             // Check if an image file is provided
-            if (ImageFile != null && ImageFile.Length > 0)
+            if (newMenuDto.ImageFile != null && newMenuDto.ImageFile.Length > 0)
             {
                 // Save the image file to the server
-                var imageUrl = SaveImageFile(ImageFile);
+                var imageUrl = SaveImageFile(newMenuDto.ImageFile);
 
                 // Set the ImagePath property in MenuDto
                 newMenuDto.ImageURL = imageUrl;

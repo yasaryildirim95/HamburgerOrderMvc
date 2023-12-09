@@ -17,7 +17,9 @@ namespace BurgerAppDtos.Concrate
         [Required,StringLength(50,MinimumLength =5)]
         public string Name { get; set; }
 
-        public IFormFile ImageURL { get; set; }
+        public IFormFile ImageFile { get; set; }
+        public string ImageURL { get; set; }
+
         public DataStatus DataStatusEnum { get; set; }
         public DateTime Created { get; set; }
         [Required,StringLength(75,MinimumLength =5)]
