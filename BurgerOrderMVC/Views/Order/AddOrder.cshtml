@@ -24,7 +24,7 @@
 		<div class="border border rounded col-md-7 p-3 me-2 ">
 			<label class="pb-3" for="pickMenu">Menü</label>
 
-			<img class="card-img" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
+			<img class="card-img" id="menupic" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
 			<div>
 				<input type="text" id="desc" disabled />
 
@@ -133,10 +133,13 @@
 
 		var menuId = selectedMenu.id;
 		var desc = selectedMenu.description;
+		var imagestring = selectedMenu.imageURL;
 		console.log(desc);
 		// Set the MenuId in the form
 		document.getElementById("menuId").value = menuId;
 		document.getElementById("desc").value = desc;
+		document.getElementById("menupic").src = imagestring;
+		console.log(imagestring);
 
 		// Check the checkboxes corresponding to the selected menu
 		if (selectedMenu.marul) {
