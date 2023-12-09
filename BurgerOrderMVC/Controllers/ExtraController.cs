@@ -71,6 +71,7 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult List()
