@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerOrderDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231206113513_solvedentity")]
-    partial class solvedentity
+    [Migration("20231209122106_Mig1")]
+    partial class Mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,24 @@ namespace BurgerOrderDAL.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "cde7cde5-229e-4776-bbf3-085f1d507b64",
+                            ConcurrencyStamp = "7b3b802c-37a9-43c4-918d-1aa2f0f45c9e",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataStatusEnum = 0,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = "1edd4e5b-4cf1-4509-9c70-d12666e5b679",
+                            ConcurrencyStamp = "f6549999-65c3-4383-baa7-0f07a2606b5e",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataStatusEnum = 0,
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.AppUser", b =>
@@ -146,9 +164,29 @@ namespace BurgerOrderDAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "76ee9f3c-bb75-480d-8719-95c911e6881c",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "16d7c2f4-83df-482a-ad6f-6f739816e264",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataStatusEnum = 0,
+                            Email = "admin@hotmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA/KeKoEJIn6ZeOEwaexE6zg8/Q5WXkIec4xr0KCA0DZZCnbHmE3vlNV1JqGz/zNng==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6ef06024-1210-406c-9aa2-d2cf97ac9652",
+                            SurName = "Admin",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Extras", b =>
+            modelBuilder.Entity("BurgerOrderEntity.Concrete.Extra", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -162,14 +200,8 @@ namespace BurgerOrderDAL.Migrations
                     b.Property<DateTime?>("Deleted")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MenuId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrderId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Price")
@@ -180,19 +212,34 @@ namespace BurgerOrderDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuId");
+                    b.HasIndex("Name")
+                        .IsUnique();
 
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Extras");
+                    b.ToTable("Extra");
 
                     b.HasData(
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8781),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2799),
                             DataStatusEnum = 0,
                             Name = "Ranch Sos",
+                            Price = 10
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2838),
+                            DataStatusEnum = 0,
+                            Name = "Barbekü Sos",
+                            Price = 10
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2846),
+                            DataStatusEnum = 0,
+                            Name = "Ballı Hardal Sos",
                             Price = 10
                         });
                 });
@@ -215,12 +262,34 @@ namespace BurgerOrderDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Domates")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Ketcap")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Marul")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mayonez")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PriceForMedium")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Sogan")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Tursu")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
@@ -233,29 +302,50 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8595),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8531),
                             DataStatusEnum = 0,
                             Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
+                            Domates = true,
+                            ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
+                            Ketcap = false,
+                            Marul = true,
+                            Mayonez = false,
                             Name = "Whooper",
-                            PriceForMedium = 100
+                            PriceForMedium = 100,
+                            Sogan = false,
+                            Tursu = false
                         },
                         new
                         {
                             Id = "2",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8680),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8550),
                             DataStatusEnum = 0,
                             Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
+                            Domates = true,
+                            ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
+                            Ketcap = false,
+                            Marul = false,
+                            Mayonez = false,
                             Name = "BigKing",
-                            PriceForMedium = 120
+                            PriceForMedium = 120,
+                            Sogan = false,
+                            Tursu = true
                         },
                         new
                         {
                             Id = "3",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8691),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8558),
                             DataStatusEnum = 0,
                             Description = "Mikrodalgada tavuk burger",
+                            Domates = true,
+                            ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
+                            Ketcap = false,
+                            Marul = false,
+                            Mayonez = false,
                             Name = "ChikenRoyal",
-                            PriceForMedium = 60
+                            PriceForMedium = 60,
+                            Sogan = true,
+                            Tursu = false
                         });
                 });
 
@@ -284,6 +374,18 @@ namespace BurgerOrderDAL.Migrations
                     b.Property<DateTime?>("Deleted")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Domates")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Ketcap")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Marul")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mayonez")
+                        .HasColumnType("bit");
+
                     b.Property<string>("MenuId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -296,8 +398,14 @@ namespace BurgerOrderDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("Sogan")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Tursu")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
@@ -345,7 +453,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8710),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8570),
                             DataStatusEnum = 0,
                             Name = "Small",
                             PriceMultiplier = 0.9m
@@ -353,7 +461,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "2",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8739),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8580),
                             DataStatusEnum = 0,
                             Name = "Medium",
                             PriceMultiplier = 1m
@@ -361,7 +469,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "3",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8749),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8595),
                             DataStatusEnum = 0,
                             Name = "Large",
                             PriceMultiplier = 1.2m
@@ -369,43 +477,11 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "4",
-                            Created = new DateTime(2023, 12, 6, 14, 35, 12, 901, DateTimeKind.Local).AddTicks(8758),
+                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8602),
                             DataStatusEnum = 0,
                             Name = "Mega",
                             PriceMultiplier = 1.5m
                         });
-                });
-
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Substance", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DataStatusEnum")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Deleted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MenuId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Updated")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuId");
-
-                    b.ToTable("Substances");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -493,6 +569,13 @@ namespace BurgerOrderDAL.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "76ee9f3c-bb75-480d-8719-95c911e6881c",
+                            RoleId = "1edd4e5b-4cf1-4509-9c70-d12666e5b679"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -512,17 +595,6 @@ namespace BurgerOrderDAL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Extras", b =>
-                {
-                    b.HasOne("BurgerOrderEntity.Concrete.Menu", null)
-                        .WithMany("Extras")
-                        .HasForeignKey("MenuId");
-
-                    b.HasOne("BurgerOrderEntity.Concrete.Order", null)
-                        .WithMany("Extras")
-                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Order", b =>
@@ -550,17 +622,6 @@ namespace BurgerOrderDAL.Migrations
                     b.Navigation("Menu");
 
                     b.Navigation("ProductSize");
-                });
-
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Substance", b =>
-                {
-                    b.HasOne("BurgerOrderEntity.Concrete.Menu", "Menu")
-                        .WithMany("Substances")
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -621,16 +682,7 @@ namespace BurgerOrderDAL.Migrations
 
             modelBuilder.Entity("BurgerOrderEntity.Concrete.Menu", b =>
                 {
-                    b.Navigation("Extras");
-
                     b.Navigation("Orders");
-
-                    b.Navigation("Substances");
-                });
-
-            modelBuilder.Entity("BurgerOrderEntity.Concrete.Order", b =>
-                {
-                    b.Navigation("Extras");
                 });
 #pragma warning restore 612, 618
         }

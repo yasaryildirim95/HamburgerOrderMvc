@@ -29,32 +29,29 @@ namespace BurgerOrderDAL.Context
             //AppUser and AppRole Seed Datas
 
             var hasher = new PasswordHasher<AppUser>();
-            var AdminId = Guid.NewGuid().ToString();
             var adminRoleID = Guid.NewGuid().ToString();
-            var userRoleID = Guid.NewGuid().ToString();
 
             mb.Entity<AppRole>().HasData(
-                new AppRole { Id = userRoleID, Name = "User" }
-            , new AppRole { Id = adminRoleID, Name = "Admin" });
+                new AppRole { Id = Guid.NewGuid().ToString(), Name = "User" },
+                new AppRole { Id = adminRoleID, Name = "Admin" });
 
-            mb.Entity<AppUser>()
-                .HasData(new AppUser
-                {
-                    Id = "1",
-                    UserName = "Admin",
-                    Name = "Admin",
-                    SurName = "Admin",
-                    Email = "admin@hotmail.com",
-                    PasswordHash = hasher.HashPassword(null, "Admin"),
+            var adminUser = new AppUser
+            {
+                Id = Guid.NewGuid().ToString(), // Dinamik bir kullanıcı Id oluştur
+                UserName = "Admin",
+                Name = "Admin",
+                SurName = "Admin",
+                Email = "admin@hotmail.com",
+                PasswordHash = hasher.HashPassword(null, "Admin"),
+            };
 
-                });
+            mb.Entity<AppUser>().HasData(adminUser);
 
-            mb.Entity<IdentityUserRole<string>>()
-                .HasData(new IdentityUserRole<string>
-                {
-                    UserId = AdminId,
-                    RoleId = adminRoleID
-                });
+            mb.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = adminUser.Id,
+                RoleId = adminRoleID
+            });
 
 
             //Menu and Extras Seed Datas
@@ -66,6 +63,7 @@ namespace BurgerOrderDAL.Context
                     Name = "Whooper",
                     Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
                     PriceForMedium = 100,
+                    ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
                     Domates = true,
                     Marul = true
                     
@@ -80,6 +78,7 @@ namespace BurgerOrderDAL.Context
                     Name = "BigKing",
                     Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
                     PriceForMedium = 120,
+                    ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
                     Tursu = true,
                     Domates = true
                 });
@@ -93,6 +92,7 @@ namespace BurgerOrderDAL.Context
                     Name = "ChikenRoyal",
                     Description = "Mikrodalgada tavuk burger",
                     PriceForMedium = 60,
+                    ImageURL = "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg",
                     Sogan = true,
                     Domates = true
                 });

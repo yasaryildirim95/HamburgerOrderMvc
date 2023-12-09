@@ -1,5 +1,6 @@
 ﻿using BurgerAppDtos.Base;
 using BurgerOrderEntity.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,8 @@ namespace BurgerAppDtos.Concrate
 
         [Required,StringLength(50,MinimumLength =5)]
         public string Name { get; set; }
+
+        public IFormFile ImageURL { get; set; }
         public DataStatus DataStatusEnum { get; set; }
         public DateTime Created { get; set; }
         [Required,StringLength(75,MinimumLength =5)]

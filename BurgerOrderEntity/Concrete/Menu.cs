@@ -16,6 +16,9 @@ namespace BurgerOrderEntity.Concrete
         }
         public string Description { get; set; }
         public int PriceForMedium { get; set; }
+
+        public string ImageURL { get; set; }
+
         public bool Domates { get; set; }
         public bool Marul { get; set; }
         public bool Sogan { get; set; }

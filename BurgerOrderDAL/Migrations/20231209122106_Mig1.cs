@@ -59,13 +59,36 @@ namespace BurgerOrderDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Extra",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DataStatusEnum = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Extra", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PriceForMedium = table.Column<int>(type: "int", nullable: false),
-                    SubstanceId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Domates = table.Column<bool>(type: "bit", nullable: false),
+                    Marul = table.Column<bool>(type: "bit", nullable: false),
+                    Sogan = table.Column<bool>(type: "bit", nullable: false),
+                    Tursu = table.Column<bool>(type: "bit", nullable: false),
+                    Mayonez = table.Column<bool>(type: "bit", nullable: false),
+                    Ketcap = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataStatusEnum = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -75,6 +98,23 @@ namespace BurgerOrderDAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductSize",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PriceMultiplier = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DataStatusEnum = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSize", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,37 +224,20 @@ namespace BurgerOrderDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Extras",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    MenuId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataStatusEnum = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Extras", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Extras_Menus_MenuId",
-                        column: x => x.MenuId,
-                        principalTable: "Menus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalPrice = table.Column<int>(type: "int", nullable: false),
-                    MenuSize = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductSizeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Domates = table.Column<bool>(type: "bit", nullable: false),
+                    Marul = table.Column<bool>(type: "bit", nullable: false),
+                    Sogan = table.Column<bool>(type: "bit", nullable: false),
+                    Tursu = table.Column<bool>(type: "bit", nullable: false),
+                    Mayonez = table.Column<bool>(type: "bit", nullable: false),
+                    Ketcap = table.Column<bool>(type: "bit", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MenuId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -238,66 +261,63 @@ namespace BurgerOrderDAL.Migrations
                         principalTable: "Menus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Substances",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Marul = table.Column<bool>(type: "bit", nullable: false),
-                    Turşu = table.Column<bool>(type: "bit", nullable: false),
-                    Ketçap = table.Column<bool>(type: "bit", nullable: false),
-                    Mayonez = table.Column<bool>(type: "bit", nullable: false),
-                    Soğan = table.Column<bool>(type: "bit", nullable: false),
-                    Domates = table.Column<bool>(type: "bit", nullable: false),
-                    MenuId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataStatusEnum = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Substances", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Substances_Menus_MenuId",
-                        column: x => x.MenuId,
-                        principalTable: "Menus",
+                        name: "FK_Orders_ProductSize_ProductSizeId",
+                        column: x => x.ProductSizeId,
+                        principalTable: "ProductSize",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Menus",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
-                values: new object[] { "1", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6901), 0, null, "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.", "Whooper", 100, "1", null });
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Created", "DataStatusEnum", "Deleted", "Name", "NormalizedName", "Updated" },
+                values: new object[,]
+                {
+                    { "1edd4e5b-4cf1-4509-9c70-d12666e5b679", "f6549999-65c3-4383-baa7-0f07a2606b5e", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, "Admin", null, null },
+                    { "cde7cde5-229e-4776-bbf3-085f1d507b64", "7b3b802c-37a9-43c4-918d-1aa2f0f45c9e", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, "User", null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Created", "DataStatusEnum", "Deleted", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TwoFactorEnabled", "Updated", "UserName" },
+                values: new object[] { "76ee9f3c-bb75-480d-8719-95c911e6881c", 0, "16d7c2f4-83df-482a-ad6f-6f739816e264", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, "admin@hotmail.com", false, false, null, "Admin", null, null, "AQAAAAEAACcQAAAAEA/KeKoEJIn6ZeOEwaexE6zg8/Q5WXkIec4xr0KCA0DZZCnbHmE3vlNV1JqGz/zNng==", null, false, "6ef06024-1210-406c-9aa2-d2cf97ac9652", "Admin", false, null, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Extra",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Name", "Price", "Updated" },
+                values: new object[,]
+                {
+                    { "1", new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2799), 0, null, "Ranch Sos", 10, null },
+                    { "2", new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2838), 0, null, "Barbekü Sos", 10, null },
+                    { "3", new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2846), 0, null, "Ballı Hardal Sos", 10, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Menus",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
-                values: new object[] { "2", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6971), 0, null, "Izgara ateeşinde olmayan Kötü Hamburhger", "BigKing", 120, "2", null });
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Domates", "ImageURL", "Ketcap", "Marul", "Mayonez", "Name", "PriceForMedium", "Sogan", "Tursu", "Updated" },
+                values: new object[,]
+                {
+                    { "1", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8531), 0, null, "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.", true, "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg", false, true, false, "Whooper", 100, false, false, null },
+                    { "2", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8550), 0, null, "Izgara ateeşinde olmayan Kötü Hamburhger", true, "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg", false, false, false, "BigKing", 120, false, true, null },
+                    { "3", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8558), 0, null, "Mikrodalgada tavuk burger", true, "https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg", false, false, false, "ChikenRoyal", 60, true, false, null }
+                });
 
             migrationBuilder.InsertData(
-                table: "Menus",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Description", "Name", "PriceForMedium", "SubstanceId", "Updated" },
-                values: new object[] { "3", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6988), 0, null, "Mikrodalgada tavuk burger", "ChikenRoyal", 60, "3", null });
+                table: "ProductSize",
+                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Name", "PriceMultiplier", "Updated" },
+                values: new object[,]
+                {
+                    { "1", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8570), 0, null, "Small", 0.9m, null },
+                    { "2", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8580), 0, null, "Medium", 1m, null },
+                    { "3", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8595), 0, null, "Large", 1.2m, null },
+                    { "4", new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8602), 0, null, "Mega", 1.5m, null }
+                });
 
             migrationBuilder.InsertData(
-                table: "Substances",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
-                values: new object[] { "1", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6960), 0, null, true, true, true, false, "1", "WhooperSubstance", false, true, null });
-
-            migrationBuilder.InsertData(
-                table: "Substances",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
-                values: new object[] { "2", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6980), 0, null, false, true, false, false, "2", "BigKingSubstance", false, true, null });
-
-            migrationBuilder.InsertData(
-                table: "Substances",
-                columns: new[] { "Id", "Created", "DataStatusEnum", "Deleted", "Domates", "Ketçap", "Marul", "Mayonez", "MenuId", "Name", "Soğan", "Turşu", "Updated" },
-                values: new object[] { "3", new DateTime(2023, 12, 5, 18, 2, 10, 800, DateTimeKind.Local).AddTicks(6996), 0, null, false, true, true, false, "3", "ChikenRoyalSubstance", false, false, null });
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "1edd4e5b-4cf1-4509-9c70-d12666e5b679", "76ee9f3c-bb75-480d-8719-95c911e6881c" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -339,9 +359,10 @@ namespace BurgerOrderDAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Extras_MenuId",
-                table: "Extras",
-                column: "MenuId");
+                name: "IX_Extra_Name",
+                table: "Extra",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_AppUserId",
@@ -354,10 +375,9 @@ namespace BurgerOrderDAL.Migrations
                 column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Substances_MenuId",
-                table: "Substances",
-                column: "MenuId",
-                unique: true);
+                name: "IX_Orders_ProductSizeId",
+                table: "Orders",
+                column: "ProductSizeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -378,13 +398,10 @@ namespace BurgerOrderDAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Extras");
+                name: "Extra");
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Substances");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -394,6 +411,9 @@ namespace BurgerOrderDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Menus");
+
+            migrationBuilder.DropTable(
+                name: "ProductSize");
         }
     }
 }
