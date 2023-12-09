@@ -63,16 +63,16 @@ namespace BurgerOrderDAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cde7cde5-229e-4776-bbf3-085f1d507b64",
-                            ConcurrencyStamp = "7b3b802c-37a9-43c4-918d-1aa2f0f45c9e",
+                            Id = "79901907-1862-463c-8513-184d6322e984",
+                            ConcurrencyStamp = "9dc30439-6b0b-4e52-b2cd-35bb146342c7",
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataStatusEnum = 0,
                             Name = "User"
                         },
                         new
                         {
-                            Id = "1edd4e5b-4cf1-4509-9c70-d12666e5b679",
-                            ConcurrencyStamp = "f6549999-65c3-4383-baa7-0f07a2606b5e",
+                            Id = "7b5184c4-13c4-4ec7-be5b-184d7b99e70a",
+                            ConcurrencyStamp = "51215c3b-32c5-421d-bd86-43ca454c44b4",
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataStatusEnum = 0,
                             Name = "Admin"
@@ -166,18 +166,18 @@ namespace BurgerOrderDAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "76ee9f3c-bb75-480d-8719-95c911e6881c",
+                            Id = "461c9a2d-3d57-49e1-a7b6-10e698229b1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "16d7c2f4-83df-482a-ad6f-6f739816e264",
+                            ConcurrencyStamp = "a6136d56-572c-402f-b63d-256373196227",
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataStatusEnum = 0,
                             Email = "admin@hotmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA/KeKoEJIn6ZeOEwaexE6zg8/Q5WXkIec4xr0KCA0DZZCnbHmE3vlNV1JqGz/zNng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFUfQPU95XrAkhC/g/PfjMcU9S8xTJbqSI33JRtoB7g1Pv62VgsWKSVUlt+/8SPNPQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ef06024-1210-406c-9aa2-d2cf97ac9652",
+                            SecurityStamp = "a6a23966-d1b8-4a3f-9b91-3ee39636b5a2",
                             SurName = "Admin",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
@@ -219,7 +219,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2799),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 421, DateTimeKind.Local).AddTicks(8387),
                             DataStatusEnum = 0,
                             Name = "Ranch Sos",
                             Price = 10
@@ -227,7 +227,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "2",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2838),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 421, DateTimeKind.Local).AddTicks(8473),
                             DataStatusEnum = 0,
                             Name = "Barbekü Sos",
                             Price = 10
@@ -235,7 +235,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "3",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 367, DateTimeKind.Local).AddTicks(2846),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 421, DateTimeKind.Local).AddTicks(8493),
                             DataStatusEnum = 0,
                             Name = "Ballı Hardal Sos",
                             Price = 10
@@ -300,7 +300,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8531),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4282),
                             DataStatusEnum = 0,
                             Description = "Izgara ateeşinde muazzam whohoper köftesi patates ve içecekle servis edilir.",
                             Domates = true,
@@ -316,7 +316,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "2",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8550),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4345),
                             DataStatusEnum = 0,
                             Description = "Izgara ateeşinde olmayan Kötü Hamburhger",
                             Domates = true,
@@ -332,7 +332,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "3",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8558),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4363),
                             DataStatusEnum = 0,
                             Description = "Mikrodalgada tavuk burger",
                             Domates = true,
@@ -451,7 +451,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "1",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8570),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4392),
                             DataStatusEnum = 0,
                             Name = "Small",
                             PriceMultiplier = 0.9m
@@ -459,7 +459,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "2",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8580),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4410),
                             DataStatusEnum = 0,
                             Name = "Medium",
                             PriceMultiplier = 1m
@@ -467,7 +467,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "3",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8595),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4424),
                             DataStatusEnum = 0,
                             Name = "Large",
                             PriceMultiplier = 1.2m
@@ -475,7 +475,7 @@ namespace BurgerOrderDAL.Migrations
                         new
                         {
                             Id = "4",
-                            Created = new DateTime(2023, 12, 9, 15, 21, 6, 366, DateTimeKind.Local).AddTicks(8602),
+                            Created = new DateTime(2023, 12, 9, 21, 58, 39, 420, DateTimeKind.Local).AddTicks(4436),
                             DataStatusEnum = 0,
                             Name = "Mega",
                             PriceMultiplier = 1.5m
@@ -571,8 +571,8 @@ namespace BurgerOrderDAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "76ee9f3c-bb75-480d-8719-95c911e6881c",
-                            RoleId = "1edd4e5b-4cf1-4509-9c70-d12666e5b679"
+                            UserId = "461c9a2d-3d57-49e1-a7b6-10e698229b1a",
+                            RoleId = "7b5184c4-13c4-4ec7-be5b-184d7b99e70a"
                         });
                 });
 

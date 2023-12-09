@@ -1,7 +1,10 @@
 ﻿using BurgerAppDtos.Concrate;
 using BurgerOrderBLL.Manager;
 using BurgerOrderBLL.Service.Contrate;
+using BurgerOrderEntity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BurgerOrderMVC.Controllers
 {
@@ -11,13 +14,16 @@ namespace BurgerOrderMVC.Controllers
 		private readonly IMenuService menuService;
 		private readonly IOrderService orderService;
 		private readonly IProductSizeService productSizeService;
+		private readonly UserManager<AppUser> userManager;
 
-		public OrderController(IExtraService extrasService, IMenuService menuService, IOrderService orderService,  IProductSizeService productSizeService)
+
+		public OrderController(IExtraService extrasService, IMenuService menuService, IOrderService orderService, IProductSizeService productSizeService, UserManager<AppUser> userManager)
 		{
 			this.extrasService = extrasService;
 			this.menuService = menuService;
 			this.orderService = orderService;
 			this.productSizeService = productSizeService;
+			this.userManager = userManager;
 		}
 		public IActionResult Index()
 		{
@@ -45,6 +51,10 @@ namespace BurgerOrderMVC.Controllers
 		[HttpPost]
 		public IActionResult Order(OrderDto orderDTO)
 		{
+			orderDTO.AppUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+			orderDTO.Id = Guid.NewGuid().ToString();
+			orderDTO.Name = orderDTO.AppUserId+orderDTO.Id;
 			var res = orderService.Insert(orderDTO);
 			if (res.IsSuccess)
 			{

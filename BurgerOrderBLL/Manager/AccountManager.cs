@@ -75,7 +75,7 @@ namespace BurgerOrderBLL.Manager
 
             }
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+            var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false,false);
             if (!result.Succeeded)
             {
 

@@ -11,8 +11,12 @@ namespace BurgerAppDtos.Concrate
 {
     public class OrderDto :IDTO
     {
+        public string Name { get; set; }
+        public string Id { get; set; }
         [Required,StringLength(100,MinimumLength =5)]
+
         public string Adress { get; set; }
+        public string AppUserId { get; set; }
         [Required]
         public decimal TotalPrice { get; set; }
         public string ProductSizeId { get; set; }

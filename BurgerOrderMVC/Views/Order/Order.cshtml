@@ -1,5 +1,8 @@
 ﻿@using BurgerAppDtos.Concrate
 @using BurgerOrderEntity.Concrete
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 @model OrderDto
 
@@ -42,6 +45,8 @@
 					<option value="4">Mega</option>
 				</select>
 				<div>
+
+					<input  asp-for="AppUserId" value="@User.Claims" hidden />
 					<div class="row justify-content-around mt-3">
 						<div class="col-md-3">
 							<input type="checkbox" class="btn-primary me-2" name="substance" id="Marul" asp-for="Marul" />
@@ -70,6 +75,13 @@
 							<label for="Domates" class="h3">Domates</label>
 						</div>
 					</div>
+					<div>
+						<label for="Adress">Adres</label>
+						<br>
+						<textarea asp-for="Adress" id="Adress" name="Adress" rows="4" cols="50">
+
+						   </textarea>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -83,14 +95,14 @@
 				</div>
 			}
 			<div class="mt-auto">
-				
 			</div>
-			
+
 			<div class="mt-auto ms-auto">
-				<label id="totalprice" class="me-5">0 TL</label>
+				<input type="number" asp-for="TotalPrice" id="TotalPrice" name="TotalPrice" readonly/>
+				<label>TL</label>
 				<label for="amount">Adet:</label>
-				<input type="number" asp-for="Amount" id="amount" min="1" style="width: 50px"/>
-				<input type="submit" value="Sepete Ekle" class="btn btn-primary" onclick="submitForm()" />
+				<input type="number" asp-for="Amount" id="amount" min="1" style="width: 50px" />
+				<input type="submit" value="Sepete Ekle" class="btn btn-primary" />
 			</div>
 		</div>
 	</div>
@@ -105,7 +117,7 @@
 
 
 <script>
-	
+
 	function updateCheckboxes() {
 		// Get the selected menu from the dropdown
 		var selectedOption = document.getElementById("pickMenu").options[document.getElementById("pickMenu").selectedIndex];
@@ -211,7 +223,7 @@
 
 			const data = await response.json();
 			console.log('Total Price222:', data.result);
-			document.getElementById("totalprice").textContent = (data.result +' TL');
+			document.getElementById("TotalPrice").value = (data.result);
 			return data;
 
 			// ... rest of the code
