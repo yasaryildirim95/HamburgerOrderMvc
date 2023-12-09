@@ -16,6 +16,7 @@ namespace BurgerOrderMVC.Controllers
 		private readonly IOrderService orderService;
 		private readonly IProductSizeService productSizeService;
 		private readonly UserManager<AppUser> userManager;
+		
 
 
 		public OrderController(IExtraService extrasService, IMenuService menuService, IOrderService orderService, IProductSizeService productSizeService, UserManager<AppUser> userManager)
@@ -83,6 +84,31 @@ namespace BurgerOrderMVC.Controllers
 				// Handle errors appropriately
 				return BadRequest($"Error calculating order price: {ex.Message}");
 			}
+
+
 		}
-	}
+		[HttpGet]
+		public IActionResult Edit(string id) 
+		{
+            var getOrderAction = orderService.Get(id);
+            if (getOrderAction.IsSuccess)
+            {
+                return View(getOrderAction.Context);
+            }
+            return View();
+
+
+        }
+		[HttpPost]
+        public IActionResult Edit(OrderDto updateOrderDto)
+        {
+            var EditAction = orderService.Update(updateOrderDto);
+            if (EditAction.IsSuccess)
+            {
+                return RedirectToAction("List");
+            }
+            return View();
+        }
+
+    }
 }
