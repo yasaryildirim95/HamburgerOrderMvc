@@ -1,22 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using BurgerOrderViewModel;
-using AutoMapper;
+﻿using BurgerAppDtos.Concrate;
 using BurgerOrderBLL.Service.Contrate;
-using BurgerAppDtos.Concrate;
-using BurgerOrderEntity.Concrete;
-using System.Security.AccessControl;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerOrderMVC.Controllers
 {
-    public class MenuController : Controller
+    public class ExtraController : Controller
     {
-        private readonly IMenuService _menuService;
+        private readonly IExtraService _extraService;
 
-        public MenuController(IMenuService menuService, IMapper mapper)
+        public ExtraController(IExtraService extraService)
         {
-            _menuService = menuService;
+            _extraService = extraService;
         }
 
         [HttpGet]
@@ -27,11 +21,11 @@ namespace BurgerOrderMVC.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(MenuDto newMenuDto) 
+        public IActionResult Create(ExtraDto newExtraDto) 
         {
-            newMenuDto.Id = Guid.NewGuid().ToString();
+            newExtraDto.Id = Guid.NewGuid().ToString();
 
-            var res = _menuService.Insert(newMenuDto);
+            var res = _extraService.Insert(newExtraDto);
             if (res.IsSuccess)
             {
 
@@ -44,7 +38,7 @@ namespace BurgerOrderMVC.Controllers
         [HttpGet]
         public IActionResult Edit(string Id)
         {
-            var getMenuAction = _menuService.Get(Id);
+            var getMenuAction = _extraService.Get(Id);
             if (getMenuAction.IsSuccess)
             {
                 return View(getMenuAction.Context);
@@ -52,9 +46,9 @@ namespace BurgerOrderMVC.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(MenuDto UpdatedDto)
+        public IActionResult Edit(ExtraDto updateExtraDto)
         {
-            var EditAction = _menuService.Update(UpdatedDto);
+            var EditAction = _extraService.Update(updateExtraDto);
             if (EditAction.IsSuccess)
             {
                 return RedirectToAction("List");
@@ -63,10 +57,10 @@ namespace BurgerOrderMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(MenuDto DeletedMenuDto)
+        public IActionResult Delete(ExtraDto deletedExtraDto)
         {
 
-            var DeleteAction = _menuService.Delete(DeletedMenuDto);
+            var DeleteAction = _extraService.Delete(deletedExtraDto);
             if (DeleteAction.IsSuccess)
             {
                 return RedirectToAction("List");
@@ -77,14 +71,12 @@ namespace BurgerOrderMVC.Controllers
         [HttpGet]
         public IActionResult List()
         {
-            var ListMenuAction = _menuService.GetAll();
+            var ListMenuAction = _extraService.GetAll();
             if (ListMenuAction.IsSuccess)
             {
                 return View(ListMenuAction.Context);
             }
             return View();
         }
-
-
     }
 }

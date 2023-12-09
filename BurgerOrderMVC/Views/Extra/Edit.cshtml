@@ -1,0 +1,22 @@
+﻿@using BurgerAppDtos.Concrate
+
+<h1>Edit Extra</h1>
+
+
+@model ExtraDto
+
+<form method="post" asp-action="Edit">
+    <input asp-for="Id" value="@Model.Id" hidden />
+    <div>
+        <label asp-for="Name">Menu Name:</label>
+        <input type="text" name="Name" id="Name" class="form-control" value="@Model.Name" />
+    </div>
+    
+    <div>
+        <label asp-for="Price">Menu Price for Medium Size:</label>
+        <input type="number" name="Price" id="Price" class="form-control" value="@Model.Price" />
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Extra Düzenle" />
+
+</form>
