@@ -9,6 +9,7 @@ namespace BurgerAppDtos.Concrate
 {
     public class UserRegisterDto
     {
+
         [Required, StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
         [Required, StringLength(50, MinimumLength = 3)]
