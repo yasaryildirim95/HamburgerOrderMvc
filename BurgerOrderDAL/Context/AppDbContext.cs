@@ -17,7 +17,6 @@ namespace BurgerOrderDAL.Context
         public DbSet<Order> Orders { get; set; }
         public DbSet<Menu> Menus { get; set; }
 
-
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
@@ -29,6 +28,7 @@ namespace BurgerOrderDAL.Context
             //AppUser and AppRole Seed Datas
 
             var hasher = new PasswordHasher<AppUser>();
+            
             var adminRoleID = Guid.NewGuid().ToString();
 
             mb.Entity<AppRole>().HasData(
@@ -39,11 +39,14 @@ namespace BurgerOrderDAL.Context
             {
                 Id = Guid.NewGuid().ToString(), // Dinamik bir kullanıcı Id oluştur
                 UserName = "Admin",
+                NormalizedUserName = "ADMIN",
                 Name = "Admin",
                 SurName = "Admin",
                 Email = "admin@hotmail.com",
-                PasswordHash = hasher.HashPassword(null, "Admin"),
+                NormalizedEmail = "ADMIN@HOTMAIL.COM"
             };
+
+            adminUser.PasswordHash = hasher.HashPassword(adminUser, "Admin123!");
 
             mb.Entity<AppUser>().HasData(adminUser);
 
