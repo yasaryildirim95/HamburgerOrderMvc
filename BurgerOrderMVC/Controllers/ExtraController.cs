@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerOrderMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ExtraController : Controller
     {
         private readonly IExtraService _extraService;
@@ -13,7 +14,7 @@ namespace BurgerOrderMVC.Controllers
         {
             _extraService = extraService;
         }
-        [Authorize(Roles ="Admin")]
+        
 
         [HttpGet]
         public IActionResult Create()
@@ -36,7 +37,6 @@ namespace BurgerOrderMVC.Controllers
             return View();
             
         }
-        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult Edit(string Id)
@@ -58,7 +58,6 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult Delete(ExtraDto deletedExtraDto)
@@ -71,7 +70,6 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "Admin")]
 
         [HttpGet]
         public IActionResult List()

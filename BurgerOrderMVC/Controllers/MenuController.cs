@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BurgerOrderMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MenuController : Controller
     {
         private readonly IMenuService _menuService;
@@ -18,7 +19,7 @@ namespace BurgerOrderMVC.Controllers
         {
             _menuService = menuService;
         }
-        [Authorize(Roles = "Admin")] 
+        
 
         [HttpGet]
         public IActionResult Create()
@@ -68,7 +69,6 @@ namespace BurgerOrderMVC.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(string Id)
         {
@@ -89,7 +89,7 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
         public IActionResult Delete(MenuDto DeletedMenuDto)
         {
@@ -101,7 +101,7 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "Admin")]
+
 
         [HttpGet]
         public IActionResult List()
@@ -113,7 +113,6 @@ namespace BurgerOrderMVC.Controllers
             }
             return View();
         }
-
 
     }
 }
