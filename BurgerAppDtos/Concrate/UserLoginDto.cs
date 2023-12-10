@@ -15,6 +15,6 @@ namespace BurgerAppDtos.Concrate
 
         [Required]
         public string Password { get; set; }
-        public bool ısRememberMe { get; set; }
+        public bool IsRememberMe { get; set; }
     }
 }
