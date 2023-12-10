@@ -74,5 +74,17 @@ namespace BurgerOrderMVC.Controllers
             return RedirectToAction("Login");
         }
 
+        public async Task<IActionResult> Logout(string returnUrl = null)
+        {
+            var res = await _accountService.SignOut();
+            
+            if (res.IsSuccess)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+
     }
 }
