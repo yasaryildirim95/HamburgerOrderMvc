@@ -39,7 +39,16 @@ namespace BurgerOrderMVC.Controllers
 
 			return View(data);
 		}
-		[Authorize]
+
+        public IActionResult List2()
+        {
+            var data = orderService.GetAll().Context.Where(x=>x.AppUserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+
+            return View(data);
+        }
+
+        [Authorize]
 		public IActionResult AddOrder()
 		{
 
