@@ -19,12 +19,12 @@
 
 
 <title>Sipariş Ver</title>
-<form method="post" asp-action="Order" onchange="calcprice()">
+<form method="post" asp-action="AddOrder" onchange="calcprice()">
 	<div class="row">
 		<div class="border border rounded col-md-7 p-3 me-2 ">
 			<label class="pb-3" for="pickMenu">Menü</label>
 
-			<img class="card-img" id="menupic" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg" />
+			<img class="card-img" id="menupic" src="https://cdn.yemek.com/mnresize/940/940/uploads/2022/05/hamburger-yemekcom.jpg"/>
 			<div>
 				<input type="text" id="desc" disabled />
 
@@ -100,7 +100,7 @@
 				<label class="me-5">TL</label>
 				<label for="amount">Adet:</label>
 				<input type="number" asp-for="Amount" id="amount" min="1" style="width: 50px" />
-				<input type="submit" value="Sepete Ekle" class="btn btn-primary" />
+				<input type="submit" value="Sipariş Ekle" class="btn btn-primary" />
 			</div>
 		</div>
 	</div>
