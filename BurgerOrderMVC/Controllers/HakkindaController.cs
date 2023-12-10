@@ -2,7 +2,7 @@
 
 namespace BurgerOrderMVC.Controllers
 {
-    public class HakkındaController : Controller
+    public class HakkindaController : Controller
     {
         public IActionResult Index()
         {

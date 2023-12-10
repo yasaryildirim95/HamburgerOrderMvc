@@ -27,12 +27,14 @@ namespace BurgerOrderMVC.Controllers
 			this.productSizeService = productSizeService;
 			this.userManager = userManager;
 		}
+
 		public IActionResult Index()
 		{
 			return View();
 		}
 
-		public IActionResult List()
+        [Authorize(Roles = "Admin")]
+        public IActionResult List()
 		{
 			var data = orderService.GetAll().Context;
 
@@ -40,9 +42,10 @@ namespace BurgerOrderMVC.Controllers
 			return View(data);
 		}
 
+		[Authorize]
         public IActionResult List2()
         {
-            var data = orderService.GetAll().Context.Where(x=>x.AppUserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var data = orderService.GetAll().Context.Where(x=>x.AppUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
 
 
             return View(data);
@@ -69,7 +72,15 @@ namespace BurgerOrderMVC.Controllers
 			var res = orderService.Insert(orderDTO);
 			if (res.IsSuccess)
 			{
-				return RedirectToAction("List");
+				if (User.IsInRole("Admin"))
+				{
+                    return RedirectToAction("List");
+                }
+				else
+				{
+                    return RedirectToAction("List2");
+                }
+				
 			}
 			return View();
 		}

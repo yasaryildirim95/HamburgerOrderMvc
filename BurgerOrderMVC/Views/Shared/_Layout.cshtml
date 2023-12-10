@@ -1,5 +1,4 @@
-﻿<
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,17 +23,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Hakkinda" asp-action="Index">Hakkımızda</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Sipariş</a>
                             <ul class="submenu">
-                                <li><a class="nav-link text-dark" asp-controller="Order" asp-action="Order">Sipariş Ver</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Siparişleri Listele</a></li>
+                                <li><a class="nav-link text-dark" asp-controller="Order" asp-action="AddOrder">Sipariş Ver</a></li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><a class="nav-link text-dark" asp-controller="Order" asp-action="List">Tüm Siparişleri Listele</a></li>
+                                }
+                                <li><a class="nav-link text-dark" asp-controller="Order" asp-action="List2">Siparişleri Listele</a></li>
                             </ul>
                         </li>
-                        @if (User.IsInRole("admin"))
+                        @if (User.IsInRole("Admin"))
                         {
                             
                             <li class="nav-item">
@@ -66,7 +69,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 Tüm Hakları Saklıdır - BurgerOrderMVC - MVC Maraton Projesi - Berk Alp Direm / Muhammed Yaşar Yıldırım / İlker Ozan Ulus - 
+            &copy; 2023 Tüm Hakları Saklıdır - BurgerOrderMVC - MVC Maraton Projesi - Berk Alp Direm / Yaşar Yıldırım / İlker Ozan Ulus 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
