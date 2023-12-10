@@ -13,9 +13,9 @@ namespace BurgerAppDtos.Concrate
         public string Id { get; set; }
 
 
-        [Required,StringLength(45,MinimumLength =5)] 
+        [Required(ErrorMessage ="Extra ismi girmek zorundasınız."),StringLength(45,MinimumLength =5,ErrorMessage ="İsim 5 ile 45 karekter arasında olmalıdır.")] 
         public string Name { get; set; }
-        [Required,Range(1,100)]
+        [Required(ErrorMessage ="Ücret alanı boş bırakılamaz."),Range(1,100,ErrorMessage ="Fiyat 1 TL ile 100 TL arasında olmalıdır.")]
         public int Price { get; set; }
     }
 }

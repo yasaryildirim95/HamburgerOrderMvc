@@ -14,7 +14,7 @@ namespace BurgerAppDtos.Concrate
     {
         public string Id {  get; set; }
 
-        [Required,StringLength(50,MinimumLength =5)]
+        [Required(ErrorMessage ="Menü ismi boş bırakılamaz."),StringLength(50,MinimumLength =5,ErrorMessage ="Menü ismi 5 ile 50 karekter arasında olmalıdır.")]
         public string Name { get; set; }
 
         public IFormFile ImageFile { get; set; }
@@ -22,9 +22,9 @@ namespace BurgerAppDtos.Concrate
 
         public DataStatus DataStatusEnum { get; set; }
         public DateTime Created { get; set; }
-        [Required,StringLength(75,MinimumLength =5)]
+        [Required(ErrorMessage ="Açıklama alanı boş bırakılamaz."),StringLength(75,MinimumLength =5,ErrorMessage ="Açıklama 5 ile 75 karekter arasında olmalıdır.")]
         public string Description { get; set; }
-        [Required,Range(10,500)]
+        [Required(ErrorMessage ="Fiyat alanı boş bırakılamaz."),Range(10,500,ErrorMessage ="Fiyat aralığı 10 TL ile 500 TL arasında olmalıdır.")]
         public int PriceForMedium { get; set; }
         public bool Domates { get; set; }
         public bool Marul { get; set; }

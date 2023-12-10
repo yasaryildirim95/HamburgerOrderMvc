@@ -10,10 +10,10 @@ namespace BurgerAppDtos.Concrate
 {
     public class UserLoginDto : IDTO
     {
-        [Required,EmailAddress]
+        [Required(ErrorMessage ="Email alanı boş bırakılamaz."),EmailAddress(ErrorMessage ="Email doğru formatta olmalıdır.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Şifre boş bırakılamaz.")]
         public string Password { get; set; }
         public bool IsRememberMe { get; set; }
     }

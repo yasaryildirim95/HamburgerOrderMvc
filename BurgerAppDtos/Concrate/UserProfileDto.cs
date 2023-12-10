@@ -11,17 +11,17 @@ namespace BurgerAppDtos.Concrate
     public class UserProfileDto : IDTO
     {
         public string Id { get; set; }
-        [Required,StringLength(50,MinimumLength =3)]
+        [Required(ErrorMessage ="İsim alnı boş bırakılamaz."),StringLength(50,MinimumLength =3,ErrorMessage ="İsim 3 ile 50 karekter arasında olmalıdır.")]
         public string Name { get; set; }
-        [Required, StringLength(50, MinimumLength = 3)]
+        [Required(ErrorMessage ="Soyisim alanı boş bırakılamaz."), StringLength(50, MinimumLength = 3,ErrorMessage ="Soyisim 3 ile 50 karekter arasında olmalıdır.")]
         public string SurName { get; set; }
-        [Required,EmailAddress]
+        [Required(ErrorMessage ="Email alanı boş bırakılamaz."),EmailAddress(ErrorMessage ="Email doğru formatta yazılmalıdır.")]
         public string Email { get; set; }
-        [Required,Phone] 
+        [Required(ErrorMessage ="Telofon numarası boş bırakılamaz."),Phone(ErrorMessage ="Doğru formatta giriniz.")] 
         public string PhoneNumber { get; set; }
-        [Required,MaxLength(20)]
+        [Required(ErrorMessage ="Mevcut şifre alanı boş bırakılamaz."),MaxLength(20,ErrorMessage ="Şifre uzunluğu 20 karekteri geçmemelidir.")]
         public string CurrentPassword { get; set; }
-        [Required,MaxLength(20)]
+        [Required(ErrorMessage ="Yeni şifre alanı boş bırakılamaz."),MaxLength(20,ErrorMessage = "Şifre uzunluğu 20 karekteri geçmemelidir.")]
         public string? NewPassword { get; set; }
     }
 }
